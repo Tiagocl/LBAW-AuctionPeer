@@ -31,7 +31,7 @@
                     <li class="bid-item">
                         <div class="bid-info">
                             <span class="bid-username">{{ $bid->user->getUsername() }}</span>
-                            <span class="bid-amount">${{ number_format($bid->amount, 2) }}</span>
+                            <span class="bid-amount">{{ number_format($bid->amount, 2) }}€</span>
                         </div>
                         @if($bid->user_id === Auth::id())
                         <form action="{{ route('bids.withdraw', ['auction' => $auction->id, 'bid' => $bid->id]) }}" method="POST" style="display:inline;">
@@ -141,12 +141,12 @@
         <div class="auction-bidding">
             <div class="bidding-division">
                 <h4><strong>Starting Bid</strong></h4>
-                <h5>${{ number_format($auction->minimum_bid, 2) }}</h5>
+                <h5>{{ number_format($auction->minimum_bid, 2) }}€</h5>
             </div>
             <div class="vertical"></div>
             <div class="bidding-division">
                 <h4><strong>Current Bid</strong></h4>
-                <h5>${{ number_format($auction->current_bid, 2) }}</h5>
+                <h5>{{ number_format($auction->current_bid, 2) }}€</h5>
             </div>
             @if($auction->status === 'active')
             <div class="vertical"></div>
