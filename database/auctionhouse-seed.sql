@@ -498,7 +498,7 @@ INSERT INTO users (username, email, password, created_at, birth_date, is_admin) 
 -- Note: Using NOW() + INTERVAL for end dates to ensure they span the next 2 months
 INSERT INTO auction (title, description, start_date, end_date, status, minimum_bid, current_bid, category_id, creator_id, created_at) VALUES
 -- Electronics Category
-('iPhone 13 Pro Max', 'Mint condition, 256GB storage', NOW(), NOW() + INTERVAL '15 days', 'active', 500, 500, 1, 1, NOW()),
+('iPhone 13 Pro Max', 'Mint condition, 256GB storage', NOW() - INTERVAL '30 days', NOW() - INTERVAL '1 hour 50 minutes', 'active', 500, 500, 1, 1, NOW()),
 ('Sony PS5', 'Brand new, sealed in box', NOW(), NOW() + INTERVAL '20 days', 'active', 400, 400, 1, 2, NOW()),
 ('MacBook Pro M1', '13-inch, 512GB SSD', NOW(), NOW() + INTERVAL '25 days', 'active', 800, 800, 1, 3, NOW()),
 ('Samsung 4K TV', '55-inch Smart TV', NOW(), NOW() + INTERVAL '30 days', 'active', 300, 300, 1, 4, NOW()),

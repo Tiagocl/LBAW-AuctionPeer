@@ -29,7 +29,7 @@
                 <span>{{$transaction->created_at}}</span>
                 <span>{{$transaction->amount}}€</span>
                 @if(!$transaction->is_payed)
-                    <form action="{{route('user.pay', $transaction)}}" method="POST">
+                    <form action="{{route('transaction.pay', $transaction)}}" method="POST">
                         @csrf
                         <button type="submit">Pay</button>
                     </form>
