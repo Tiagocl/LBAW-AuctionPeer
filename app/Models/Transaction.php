@@ -13,6 +13,7 @@ class Transaction extends Model
     protected $fillable = [
         'amount',
         'auction_id',
+        'is_payed',
     ];
 
     protected $casts = [
@@ -26,7 +27,6 @@ class Transaction extends Model
         return $this->belongsTo(Auction::class);
     }
 
-    //NOT WORKING!!!!!!!!!!!
     public function buyer(): BelongsTo
     {
         return $this->auction->belongsTo(User::class, 'buyer_id');

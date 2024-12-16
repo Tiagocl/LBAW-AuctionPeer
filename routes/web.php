@@ -7,6 +7,7 @@ use App\Http\Controllers\BidController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MiscController;
 use App\Http\Controllers\RatingController;
@@ -118,4 +119,14 @@ Route::controller(MiscController::class)->group(function () {
     Route::get('/features', 'features')->name('features');
     Route::get('/contacts', 'contacts')->name('contacts');
     Route::get('/faq', 'faq')->name('faq');
+});
+
+// Ratings
+Route::controller(RatingController::class)->group(function () {
+    Route::get('/user/{receiverId}/rate', 'create')->name('ratings.create'); // Rating form
+    Route::post('/user/{receiverId}/rate', 'store')->name('ratings.store'); // Submit rating
+});
+
+Route::controller(TransactionController::class)->group(function () {
+    Route::post('/transaction/{transaction}/pay', 'pay')->name('transaction.pay');
 });

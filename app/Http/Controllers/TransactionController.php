@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Auction;
 use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -61,5 +63,30 @@ class TransactionController extends Controller
     public function destroy(Transaction $transaction)
     {
         //
+    }
+
+    public function pay(Transaction $transaction)
+    {
+        $auction = Auction::findOrFail($transaction->auction_id);
+        $buyer = User::findOrFail($auction->buyer_id);
+        $seller = User::findOrFail($auction->creator_id);
+
+        if ($buyer->balance < $transaction->amount) {
+            return redirect()->back()->with('error', 'Insufficient funds.');
+        }
+
+        if ($transaction->is_payed) {
+            return redirect()->back()->with('error', 'Transaction has already been payed.');
+        }
+
+        $buyer->balance -= $transaction->amount;
+        $seller->balance += $transaction->amount;
+        $transaction->is_payed = true;
+
+        $buyer->save();
+        $seller->save();
+        $transaction->save();
+
+        return redirect()->back()->with('success', 'Transaction payed successfully.');
     }
 }

@@ -28,6 +28,12 @@
                 </span>
                 <span>{{$transaction->created_at}}</span>
                 <span>{{$transaction->amount}}€</span>
+                @if(!$transaction->is_payed)
+                    <form action="{{route('transaction.pay', $transaction)}}" method="POST">
+                        @csrf
+                        <button type="submit">Pay</button>
+                    </form>
+                @endif
             </div>
         @endforeach
 
@@ -43,6 +49,11 @@
                 </span>
                 <span>{{$transaction->created_at}}</span>
                 <span>{{$transaction->amount}}€</span>
+                @if(!$transaction->is_payed)
+                    <span>Not Payed</span>
+                @else
+                    <span>Payed</span>
+                @endif
             </div>
         @endforeach
     </div>
