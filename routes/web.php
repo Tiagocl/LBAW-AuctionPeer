@@ -82,6 +82,7 @@ Route::controller(UserController::class)->group(function () {
     Route::post('/admin/users/create', 'storeUser')->name('user.store');
     Route::post('/admin/users/{user}/block', [UserController::class, 'block'])->name('users.block');
     Route::post('/admin/users/{user}/unblock', [UserController::class, 'unblock'])->name('users.unblock');
+    Route::post('/user/{user}/withdraw', 'withdraw')->name('user.withdraw');
 });
 
 Route::controller(BidController::class)->group(function () {

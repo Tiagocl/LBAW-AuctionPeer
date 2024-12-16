@@ -13,6 +13,13 @@
                 <button type="submit">Deposit</button>
             </div>
         </form>
+        <form action="{{route('user.withdraw', $user)}}" method="POST">
+            @csrf
+            <div id="withdraw">
+                <input type="number" name="amount" id="amount" placeholder="Amount" required>
+                <button type="submit">Withdraw</button>
+            </div>
+        </form>
     </div>
     <div class="rectangle-div">
         <h1>My Transactions</h1>
