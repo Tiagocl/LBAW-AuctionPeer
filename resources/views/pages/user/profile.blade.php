@@ -44,7 +44,7 @@
     <!-- Comment Field -->
     <div class="mt-4">
         <label for="comment" class="block font-medium">Comment:</label>
-        <textarea id="comment" name="comment" rows="4" class="w-full border border-gray-300 rounded"></textarea>
+        <textarea plcaholder="Leave a comment" id="comment" name="comment" rows="4" class="w-full border border-gray-300 rounded"></textarea>
     </div>
 
     
