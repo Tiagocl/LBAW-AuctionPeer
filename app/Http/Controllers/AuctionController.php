@@ -299,15 +299,10 @@ class AuctionController extends Controller
 
         Log::info('End Date:' . $endDate);
         // Check if the auction owner is the logged-in user
-        if ($auction->user_id === $user->id) {
+        if ($auction->creator_id === $user->id) {
             // Update the balance of the auction owner
             $user->update([
                 'balance' => $user->balance + $highestBid->amount
-            ]);
-        
-            // Optionally, update auction status to withdrawn
-            $auction->update([
-                'status' => 'withdrawn',
             ]);
         
             return redirect()->back()->with('success', 'Funds withdrawn successfully and balance updated.');

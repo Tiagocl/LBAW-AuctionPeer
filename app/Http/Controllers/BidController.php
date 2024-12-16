@@ -107,8 +107,6 @@ class BidController extends Controller
             $highestBid = $auction->bids()->orderBy('amount', 'desc')->first();
             $auction->current_bid = $highestBid ? $highestBid->amount : $auction->minimum_bid;
             $auction->save();
-            $user->balance += $bid->amount;
-            $user->save();
 
             return redirect()->back()->with('success', 'Bid withdrawn successfully!');
         } catch (QueryException $exception) {

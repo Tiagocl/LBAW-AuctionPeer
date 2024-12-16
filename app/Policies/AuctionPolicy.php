@@ -23,7 +23,7 @@ class AuctionPolicy
      */
     public function view(?User $user, Auction $auction): bool
     {
-        return $auction->status === 'active';
+        return true;
     }
 
     /**

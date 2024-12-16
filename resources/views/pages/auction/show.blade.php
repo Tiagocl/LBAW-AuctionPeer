@@ -49,7 +49,7 @@
 
                 @php
                 $highestBid = $auction->bids()->orderBy('amount', 'desc')->first();
-                $isOwner = $auction->user_id === auth()->id(); // Check if the logged-in user is the owner
+                $isOwner = $auction->creator_id === auth()->id(); // Check if the logged-in user is the owner
                 @endphp
 
                 @if ($highestBid)
@@ -66,7 +66,7 @@
                     @csrf
 
                     <!-- Rating input -->
-                    <label for="score">Rate Seller:</label>
+                    <label for="score">Rate Buyer:</label>
                     <select name="score" required>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -81,10 +81,6 @@
 
                     <!-- Submit button -->
                     <button type="submit">Submit Rating</button>
-                </form>
-                <form action="{{ route('auction.withdrawFunds', $auction) }}" method="POST" style="margin-top: 20px;">
-                    @csrf
-                    <button type="submit" class="btn btn-primary">Withdraw Funds</button>
                 </form>
                 @else
                 <form action="{{ route('auction.rateSeller', $auction->id) }}" method="POST">
