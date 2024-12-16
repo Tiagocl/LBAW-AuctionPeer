@@ -113,7 +113,8 @@ CREATE TABLE transactions (
                               amount NUMERIC NOT NULL,
                               auction_id INTEGER NOT NULL REFERENCES auction(id),
                               created_at TIMESTAMP NOT NULL,
-                              updated_at TIMESTAMP
+                              updated_at TIMESTAMP,
+                              is_payed BOOL DEFAULT FALSE
 );
 
 CREATE TABLE following (
