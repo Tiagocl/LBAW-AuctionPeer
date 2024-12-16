@@ -82,10 +82,6 @@
                     <!-- Submit button -->
                     <button type="submit">Submit Rating</button>
                 </form>
-                <form action="{{ route('auction.withdrawFunds', $auction) }}" method="POST" style="margin-top: 20px;">
-                    @csrf
-                    <button type="submit" class="btn btn-primary">Withdraw Funds</button>
-                </form>
                 @else
                 <form action="{{ route('auction.rateSeller', $auction->id) }}" method="POST">
                     @csrf
