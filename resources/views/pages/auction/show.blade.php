@@ -157,7 +157,7 @@
                     <label for="amount">
                         <h4><strong>Bid</strong></h4>
                     </label>
-                    <input type="number" name="amount" id="amount" step="0.01" min="{{ $auction->current_bid + 0.01 }}" required>
+                    <input placeholder="Enter Bid "type="number" name="amount" id="amount" step="0.01" min="{{ $auction->current_bid + 0.01 }}" required>
                     <button type="submit">Place Bid</button>
                 </div>
             </form>

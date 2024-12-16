@@ -9,10 +9,10 @@
             <label for="email" class="">Email</label>
             <input type="hidden" name="token" value="{{ $token }}">
             <input type="email" name="email" required>
-            <label for="password" class="">Password</label>
+            <label placeholder="Enter Password" for="password" class="">Password</label>
             <input type="password" name="password" required>
             <label for="password_confirmation" class="">Confirm Password</label>
-            <input type="password" name="password_confirmation" required>
+            <input placeholder="Confirm your Password" type="password" name="password_confirmation" required>
             <button type="submit">Reset Password</button>
         </form>
     </div>

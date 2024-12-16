@@ -15,7 +15,7 @@
         <!-- username -->
         <div>
             <label for="username" class="form-label">Username</label>
-            <input type="text" name="username" id="username" class="form-control @error('username') is-invalid @enderror" value="{{ old('username', $user->username) }}" required>
+            <input placeholder="New Username" type="text" name="username" id="username" class="form-control @error('username') is-invalid @enderror" value="{{ old('username', $user->username) }}" required>
             @error('username')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -33,7 +33,7 @@
         <!-- address -->
         <div>
             <label for="address" class="form-label">Address</label>
-            <textarea name="address" id="address" class="form-control @error('address') is-invalid @enderror">{{ old('address', $user->address) }}</textarea>
+            <textarea placeholder="User Address"name="address" id="address" class="form-control @error('address') is-invalid @enderror">{{ old('address', $user->address) }}</textarea>
             @error('address')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror

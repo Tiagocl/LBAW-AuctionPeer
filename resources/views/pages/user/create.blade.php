@@ -9,19 +9,19 @@
             @csrf
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" name="username" required>
+                <input placeholder="Username" type="text" class="form-control" id="username" name="username" required>
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" required>
+                <input placeholder="Email" type="email" class="form-control" id="email" name="email" required>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password" required>
+                <input placeholder="Password" type="password" class="form-control" id="password" name="password" required>
             </div>
             <div class="form-gorup">
                 <label for="password-confirm">Confirm Password</label>
-                <input id="password-confirm" type="password" name="password_confirmation" required>
+                <input placeholder="Password Confirm" id="password-confirm" type="password" name="password_confirmation" required>
             </div>
             <div class="form-group">
                 <label for="is_admin">Is Admin</label>

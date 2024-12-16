@@ -11,7 +11,7 @@
             <input type="hidden" name="user_id" value="{{ Auth::id() }}">
             <div class="form-group">
                 <label for="reason">Reason</label>
-                <textarea name="reason" id="reason" class="form-control" required></textarea>
+                <textarea placeholder="Reason for Report" name="reason" id="reason" class="form-control" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Create Report</button>
         </form>
