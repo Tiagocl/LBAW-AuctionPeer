@@ -66,7 +66,7 @@
                     @csrf
 
                     <!-- Rating input -->
-                    <label for="score">Rating (1-5):</label>
+                    <label for="score">Rate Seller:</label>
                     <select name="score" required>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -76,7 +76,7 @@
                     </select>
 
                     <!-- Comment input -->
-                    <label for="comment">Comment (optional):</label>
+                    <label for="comment">Comment:</label>
                     <textarea name="comment" placeholder="Leave a comment..."></textarea>
 
                     <!-- Submit button -->
@@ -86,7 +86,29 @@
                     @csrf
                     <button type="submit" class="btn btn-primary">Withdraw Funds</button>
                 </form>
+                @else
+                <form action="{{ route('auction.rateSeller', $auction->id) }}" method="POST">
+                    @csrf
+
+                    <!-- Rating input -->
+                    <label for="score">Rate Seller:</label>
+                    <select name="score" required>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+
+                    <!-- Comment input -->
+                    <label for="comment">Comment:</label>
+                    <textarea name="comment" placeholder="Leave a comment..."></textarea>
+
+                    <!-- Submit button -->
+                    <button type="submit">Submit Rating</button>
+                </form>
                 @endif
+
                 @endif
         </div>
     </div>

@@ -48,6 +48,7 @@ Route::controller(AuctionController::class)->group(function () {
     Route::get('/admin/auctions', 'adminIndex')->name('admin.auctions');
     Route::post('/auction/{auction}/withdraw-funds', 'withdrawFunds')->name('auction.withdrawFunds');
     Route::post('/auction/{auction}/rate/buyer', [AuctionController::class, 'rateBuyer'])->name('auction.rateBuyer');
+    Route::post('/auction/{auction}/rate/seller', [AuctionController::class, 'rateSeller'])->name('auction.rateSeller');
 });
 
 
@@ -117,10 +118,4 @@ Route::controller(MiscController::class)->group(function () {
     Route::get('/features', 'features')->name('features');
     Route::get('/contacts', 'contacts')->name('contacts');
     Route::get('/faq', 'faq')->name('faq');
-});
-
-// Ratings
-Route::controller(RatingController::class)->group(function () {
-    Route::get('/user/{receiverId}/rate', 'create')->name('ratings.create'); // Rating form
-    Route::post('/user/{receiverId}/rate', 'store')->name('ratings.store'); // Submit rating
 });
