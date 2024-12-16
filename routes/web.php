@@ -49,6 +49,7 @@ Route::controller(AuctionController::class)->group(function () {
     Route::get('/admin/auctions', 'adminIndex')->name('admin.auctions');
     Route::post('/auction/{auction}/withdraw-funds', 'withdrawFunds')->name('auction.withdrawFunds');
     Route::post('/auction/{auction}/rate/buyer', [AuctionController::class, 'rateBuyer'])->name('auction.rateBuyer');
+    Route::post('/auction/{auction}/rate/seller', [AuctionController::class, 'rateSeller'])->name('auction.rateSeller');
 });
 
 

@@ -350,4 +350,40 @@ class AuctionController extends Controller
         return redirect()->route('auction.show', $auctionId)
             ->with('success', 'Buyer rated successfully.');
     }
+
+    public function rateSeller(Request $request, $auctionId)
+    {
+        // Fetch the auction by its ID
+        $auction = Auction::findOrFail($auctionId);
+    
+        // Fetch the currently authenticated user
+        $user = User::find(auth()->id());
+    
+    
+        // Ensure the authenticated user is the buyer (highest bidder)
+        $highestBid = $auction->bids()->orderBy('amount', 'desc')->first();
+        if (!$highestBid || $highestBid->user_id !== $user->id) {
+            return redirect()->route('auction.show', $auctionId)
+                ->withErrors('You can only rate the seller if you were the highest bidder.');
+        }
+    
+        // Validate the rating input
+        $request->validate([
+            'score' => 'required|integer|min:0|max:5',  // Rating score should be between 0 and 5
+            'comment' => 'nullable|string|max:500',    // Optional comment with a maximum length of 500 characters
+        ]);
+    
+        // Create the rating for the seller
+        Rating::create([
+            'score' => $request->input('score'),
+            'comment' => $request->input('comment'),
+            'auction_id' => $auctionId,
+            'rater_id' => $user->id,  // The buyer is the rater
+            'receiver_id' => $auction->creator_id,  // The seller is being rated
+        ]);
+    
+        // Redirect to the auction page with a success message
+        return redirect()->route('auction.show', $auctionId)
+            ->with('success', 'Seller rated successfully.');
+    }
 }
