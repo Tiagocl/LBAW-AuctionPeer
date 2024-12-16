@@ -20,7 +20,11 @@
         @foreach($user->buyerTransactions()->get() as $transaction)
             @php($auction = $transaction->auction)
             <div class="rectangle-div transaction red">
-                <span>{{$auction->title}}</span>
+                <span>
+                    <a href="{{route('auction.show', $auction)}}">
+                    {{$auction->title}}
+                    </a>
+                </span>
                 <span>Seller:
                     <a href="{{route('user.show', $auction->creator()->first())}}">
                     {{$auction->creator()->first()->username}}
@@ -41,7 +45,11 @@
         @foreach($user->sellerTransactions()->get() as $transaction)
             @php($auction = $transaction->auction)
             <div class="rectangle-div transaction green">
-                <span>{{$auction->title}}</span>
+                <span>
+                    <a href="{{route('auction.show', $auction)}}">
+                    {{$auction->title}}
+                    </a>
+                </span>
                 <span>Buyer:
                     <a href="{{route('user.show', $transaction->buyer()->first())}}">
                     {{$transaction->buyer()->first()->username}}
