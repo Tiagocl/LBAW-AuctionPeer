@@ -10,7 +10,6 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MiscController;
-use App\Http\Controllers\RatingController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CardController;
@@ -121,11 +120,7 @@ Route::controller(MiscController::class)->group(function () {
     Route::get('/faq', 'faq')->name('faq');
 });
 
-// Ratings
-Route::controller(RatingController::class)->group(function () {
-    Route::get('/user/{receiverId}/rate', 'create')->name('ratings.create'); // Rating form
-    Route::post('/user/{receiverId}/rate', 'store')->name('ratings.store'); // Submit rating
-});
+
 
 Route::controller(TransactionController::class)->group(function () {
     Route::post('/transaction/{transaction}/pay', 'pay')->name('transaction.pay');
