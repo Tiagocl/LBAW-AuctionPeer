@@ -15,7 +15,7 @@
         </form>
         <form action="{{route('user.withdraw', $user)}}" method="POST">
             @csrf
-            <div id="withdraw">
+            <div id="deposit">
                 <input type="number" name="amount" id="amount" placeholder="Amount" required>
                 <button type="submit">Withdraw</button>
             </div>
