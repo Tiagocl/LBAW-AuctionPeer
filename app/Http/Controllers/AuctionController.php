@@ -10,6 +10,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Gate;
+
+use App\Events\AuctionFollowed;
+use App\Events\AuctionCanceled;
+use App\Events\AuctionEnded;
+use App\Events\AuctionEdited;
+
+
+use Pusher\Pusher;
 use App\Models\Rating;
 
 class AuctionController extends Controller
@@ -110,6 +118,22 @@ class AuctionController extends Controller
         $this->authorize('update', $auction);
         $categories = Category::all();
 
+        // Notify the auction owner that the auction has been edited
+        event(new AuctionEdited($auction, $auction->creator, $auction->title));
+
+        // Notify other bidders that the auction has been edited
+        $bidders = $auction->bids()->get();
+
+        foreach ($bidders as $bidder) {
+            event(new AuctionEdited($auction, $bidder, $auction->title));
+        }
+
+        // Notify followers that the auction has been edited
+        $followers = $auction->followers()->get();
+        foreach ($followers as $follower) {
+            event(new AuctionEdited($auction, $follower, $auction->title));
+        }
+
         return view('pages.auction.edit', compact('auction', 'categories'));
     }
 
@@ -151,8 +175,13 @@ class AuctionController extends Controller
             'status' => 'canceled',
         ]);
 
-        return redirect()->route('auctions.index')->with('success', 'Auction cancelled successfully.');
+        // Notify all bidders that the auction has been canceled
+        $bidders = $auction->bids()->get();
+        foreach ($bidders as $bidder) {
+            event(new AuctionCanceled($auction, $bidder->user, $auction->title));
+        }
 
+        return redirect()->route('auctions.index')->with('success', 'Auction cancelled successfully.');
     }
 
     public function search(Request $request)
@@ -277,6 +306,25 @@ class AuctionController extends Controller
         }
         if (!$auction->isFollowedBy($user)) {
             $auction->followers()->attach($user->id);
+
+            // Trigger the event
+            event(new AuctionFollowed($user, $auction->creator, $auction->title));
+
+            /*
+            $options = array(
+                'cluster' => 'eu',
+                'useTLS' => true
+            );
+            $pusher = new Pusher(
+                '2cb6ea93c01b007bec9f',
+                'b952be1d71bc8d74c357',
+                '1911442',
+                $options
+            );
+            
+            $data['message'] = 'hello world';
+            $pusher->trigger('my-channel', 'my-event', $data);
+            */
         }
 
         return redirect()->back()->with('success', 'Auction followed successfully');

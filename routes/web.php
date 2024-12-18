@@ -17,6 +17,7 @@ use App\Http\Controllers\ItemController;
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +50,10 @@ Route::controller(AuctionController::class)->group(function () {
     Route::post('/auction/{auction}/withdraw-funds', 'withdrawFunds')->name('auction.withdrawFunds');
     Route::post('/auction/{auction}/rate/buyer', [AuctionController::class, 'rateBuyer'])->name('auction.rateBuyer');
     Route::post('/auction/{auction}/rate/seller', [AuctionController::class, 'rateSeller'])->name('auction.rateSeller');
+});
+
+Route::controller(NotificationController::class)->group(function () {
+    Route::post('/send-global-notification', 'sendGlobalNotification')->name('send-global-notification');
 });
 
 

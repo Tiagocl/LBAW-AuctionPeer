@@ -8,6 +8,9 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+
+use App\Events\AuctionBidPlaced;
+use App\Events\AuctionBidWithdrawn;
 use App\Models\User;
 
 class BidController extends Controller
@@ -60,6 +63,25 @@ class BidController extends Controller
             $auction->current_bid = $bid->amount;
             $auction->save();  // Save the auction with the new current bid
 
+            // Notify the auction owner that a new bid has been placed
+            event(new AuctionBidPlaced($user, $bid->amount, $auction->creator, $auction->name));
+
+            // Notify other bidders that a new bid has been placed
+            $bidders = $auction->bids()->where('user_id', '!=', $user->id)->get();
+            foreach ($bidders as $bidder) {
+                event(new AuctionBidPlaced($user, $bid->amount, $bidder->user, $auction->name));
+            }
+
+            // Nofity followers that a new bid has been placed
+            $followers = $auction->followers()->get();
+            // Remove the bidders from this list so they dont get notified twice
+            $followers = $followers->filter(function ($follower) use ($bidders) {
+                return !$bidders->contains('user_id', $follower->user_id);
+            });
+            foreach ($followers as $follower) {
+                event(new AuctionBidPlaced($user, $bid->amount, $follower->user, $auction->name));
+            }
+
             // Return the updated user information, including balance, to update the frontend
             return redirect()->back()->with('success', 'Bid placed successfully!');
         } catch (QueryException $exception) {
@@ -108,6 +130,25 @@ class BidController extends Controller
             $auction->current_bid = $highestBid ? $highestBid->amount : $auction->minimum_bid;
             $auction->save();
 
+            // Notify the auction owner that a bid has been withdrawn
+            event(new AuctionBidWithdrawn($bid->user, $bid->amount, $auction->creator, $auction->name));
+
+            // Notify other bidders that a bid has been withdrawn
+            $bidders = $auction->bids()->where('user_id', '!=', $bid->user_id)->get();
+            foreach ($bidders as $bidder) {
+                event(new AuctionBidWithdrawn($bid->user, $bid->amount, $bidder->user, $auction->name));
+            }
+
+            // Notify followers that a bid has been withdrawn
+            $followers = $auction->followers()->get();
+            // Remove the bidders from this list so they dont get notified twice
+            $followers = $followers->filter(function ($follower) use ($bidders) {
+                return !$bidders->contains('user_id', $follower->user_id);
+            });
+            foreach ($followers as $follower) {
+                event(new AuctionBidWithdrawn($bid->user, $bid->amount, $follower->user, $auction->name));
+            }
+            
             return redirect()->back()->with('success', 'Bid withdrawn successfully!');
         } catch (QueryException $exception) {
             Log::error('An error occurred while withdrawing the bid: ' . $exception->getMessage());
