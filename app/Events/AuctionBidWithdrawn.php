@@ -16,11 +16,13 @@ class AuctionBidWithdrawn implements ShouldBroadcast
 
     public $message;
     public $user_to_be_notified;
+    public $auction;
 
     // Here you create the message to be sent when the event is triggered.
-    public function __construct($bidder, $bidAmount, $user_to_be_notified, $auction_name) {
+    public function __construct($bidder, $bidAmount, $user_to_be_notified, $auction) {
+        $this->auction = $auction;
         $this->user_to_be_notified = $user_to_be_notified;
-        $this->message = $bidder->username . ' withdrew his bid of ' . $bidAmount . ' on auction: ' . $auction_name;
+        $this->message = $bidder->username . ' withdrew his bid of ' . $bidAmount . ' on auction: ' . $auction->title;
     }
 
     // You should specify the name of the channel created in Pusher.
@@ -31,5 +33,12 @@ class AuctionBidWithdrawn implements ShouldBroadcast
     // You should specify the name of the generated notification.
     public function broadcastAs() {
         return 'notifications';
+    }
+
+    public function broadcastWith()
+    {
+        return [
+            'message' => $this->message,
+        ];
     }
 }
