@@ -331,15 +331,10 @@ class AuctionController extends Controller
 
         Log::info('End Date:' . $endDate);
         // Check if the auction owner is the logged-in user
-        if ($auction->user_id === $user->id) {
+        if ($auction->creator_id === $user->id) {
             // Update the balance of the auction owner
             $user->update([
                 'balance' => $user->balance + $highestBid->amount
-            ]);
-        
-            // Optionally, update auction status to withdrawn
-            $auction->update([
-                'status' => 'withdrawn',
             ]);
         
             return redirect()->back()->with('success', 'Funds withdrawn successfully and balance updated.');
@@ -381,5 +376,41 @@ class AuctionController extends Controller
         // Redirect to the auction page with a success message
         return redirect()->route('auction.show', $auctionId)
             ->with('success', 'Buyer rated successfully.');
+    }
+
+    public function rateSeller(Request $request, $auctionId)
+    {
+        // Fetch the auction by its ID
+        $auction = Auction::findOrFail($auctionId);
+    
+        // Fetch the currently authenticated user
+        $user = User::find(auth()->id());
+    
+    
+        // Ensure the authenticated user is the buyer (highest bidder)
+        $highestBid = $auction->bids()->orderBy('amount', 'desc')->first();
+        if (!$highestBid || $highestBid->user_id !== $user->id) {
+            return redirect()->route('auction.show', $auctionId)
+                ->withErrors('You can only rate the seller if you were the highest bidder.');
+        }
+    
+        // Validate the rating input
+        $request->validate([
+            'score' => 'required|integer|min:0|max:5',  // Rating score should be between 0 and 5
+            'comment' => 'nullable|string|max:500',    // Optional comment with a maximum length of 500 characters
+        ]);
+    
+        // Create the rating for the seller
+        Rating::create([
+            'score' => $request->input('score'),
+            'comment' => $request->input('comment'),
+            'auction_id' => $auctionId,
+            'rater_id' => $user->id,  // The buyer is the rater
+            'receiver_id' => $auction->creator_id,  // The seller is being rated
+        ]);
+    
+        // Redirect to the auction page with a success message
+        return redirect()->route('auction.show', $auctionId)
+            ->with('success', 'Seller rated successfully.');
     }
 }

@@ -31,7 +31,7 @@
                     <li class="bid-item">
                         <div class="bid-info">
                             <span class="bid-username">{{ $bid->user->getUsername() }}</span>
-                            <span class="bid-amount">${{ number_format($bid->amount, 2) }}</span>
+                            <span class="bid-amount">{{ number_format($bid->amount, 2) }}€</span>
                         </div>
                         @if($bid->user_id === Auth::id())
                         <form action="{{ route('bids.withdraw', ['auction' => $auction->id, 'bid' => $bid->id]) }}" method="POST" style="display:inline;">
@@ -49,7 +49,7 @@
 
                 @php
                 $highestBid = $auction->bids()->orderBy('amount', 'desc')->first();
-                $isOwner = $auction->user_id === auth()->id(); // Check if the logged-in user is the owner
+                $isOwner = $auction->creator_id === auth()->id(); // Check if the logged-in user is the owner
                 @endphp
 
                 @if ($highestBid)
@@ -66,7 +66,7 @@
                     @csrf
 
                     <!-- Rating input -->
-                    <label for="score">Rating (1-5):</label>
+                    <label for="score">Rate Buyer:</label>
                     <select name="score" required>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -76,17 +76,35 @@
                     </select>
 
                     <!-- Comment input -->
-                    <label for="comment">Comment (optional):</label>
+                    <label for="comment">Comment:</label>
                     <textarea name="comment" placeholder="Leave a comment..."></textarea>
 
                     <!-- Submit button -->
                     <button type="submit">Submit Rating</button>
                 </form>
-                <form action="{{ route('auction.withdrawFunds', $auction) }}" method="POST" style="margin-top: 20px;">
+                @else
+                <form action="{{ route('auction.rateSeller', $auction->id) }}" method="POST">
                     @csrf
-                    <button type="submit" class="btn btn-primary">Withdraw Funds</button>
+
+                    <!-- Rating input -->
+                    <label for="score">Rate Seller:</label>
+                    <select name="score" required>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+
+                    <!-- Comment input -->
+                    <label for="comment">Comment:</label>
+                    <textarea name="comment" placeholder="Leave a comment..."></textarea>
+
+                    <!-- Submit button -->
+                    <button type="submit">Submit Rating</button>
                 </form>
                 @endif
+
                 @endif
         </div>
     </div>
@@ -141,12 +159,12 @@
         <div class="auction-bidding">
             <div class="bidding-division">
                 <h4><strong>Starting Bid</strong></h4>
-                <h5>${{ number_format($auction->minimum_bid, 2) }}</h5>
+                <h5>{{ number_format($auction->minimum_bid, 2) }}€</h5>
             </div>
             <div class="vertical"></div>
             <div class="bidding-division">
                 <h4><strong>Current Bid</strong></h4>
-                <h5>${{ number_format($auction->current_bid, 2) }}</h5>
+                <h5>{{ number_format($auction->current_bid, 2) }}€</h5>
             </div>
             @if($auction->status === 'active')
             <div class="vertical"></div>
@@ -157,7 +175,7 @@
                     <label for="amount">
                         <h4><strong>Bid</strong></h4>
                     </label>
-                    <input type="number" name="amount" id="amount" step="0.01" min="{{ $auction->current_bid + 0.01 }}" required>
+                    <input placeholder="Enter Bid "type="number" name="amount" id="amount" step="0.01" min="{{ $auction->current_bid + 0.01 }}" required>
                     <button type="submit">Place Bid</button>
                 </div>
             </form>

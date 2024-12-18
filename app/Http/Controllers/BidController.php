@@ -51,10 +51,6 @@ class BidController extends Controller
                 return response()->json(['error' => 'Bid amount must be higher than the current bid.'], 400);
             }
 
-            if ($user->balance < $request->amount) {
-                return redirect()->back()->with('error', 'Insufficient balance to place the bid.');
-            }
-
             // Create a new bid
             $bid = Bid::create([
                 'user_id' => auth()->id(),
@@ -64,9 +60,6 @@ class BidController extends Controller
 
             // Update the current bid on the auction
             $auction = $bid->auction;
-            $user->balance -= $bid->amount;
-            $user->save();  // Save the updated balance
-
             $auction->current_bid = $bid->amount;
             $auction->save();  // Save the auction with the new current bid
 
@@ -136,8 +129,6 @@ class BidController extends Controller
             $highestBid = $auction->bids()->orderBy('amount', 'desc')->first();
             $auction->current_bid = $highestBid ? $highestBid->amount : $auction->minimum_bid;
             $auction->save();
-            $user->balance += $bid->amount;
-            $user->save();
 
             // Notify the auction owner that a bid has been withdrawn
             event(new AuctionBidWithdrawn($bid->user, $bid->amount, $auction->creator, $auction));

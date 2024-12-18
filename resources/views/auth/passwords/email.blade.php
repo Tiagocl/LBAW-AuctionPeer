@@ -8,7 +8,7 @@
     <form method="POST" action="{{ route('password.email') }}">
         @csrf
         <label for="email" class="">Email</label>
-        <input type="email" name="email" required>
+        <input placeholder="Enter your Email" type="email" name="email" required>
         <button type="submit">Send Password Reset Link</button>
     </form>
     </div>

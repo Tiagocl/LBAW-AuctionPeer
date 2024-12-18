@@ -7,9 +7,9 @@ use App\Http\Controllers\BidController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MiscController;
-use App\Http\Controllers\RatingController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CardController;
@@ -49,6 +49,7 @@ Route::controller(AuctionController::class)->group(function () {
     Route::get('/admin/auctions', 'adminIndex')->name('admin.auctions');
     Route::post('/auction/{auction}/withdraw-funds', 'withdrawFunds')->name('auction.withdrawFunds');
     Route::post('/auction/{auction}/rate/buyer', [AuctionController::class, 'rateBuyer'])->name('auction.rateBuyer');
+    Route::post('/auction/{auction}/rate/seller', [AuctionController::class, 'rateSeller'])->name('auction.rateSeller');
 });
 
 Route::controller(NotificationController::class)->group(function () {
@@ -86,6 +87,7 @@ Route::controller(UserController::class)->group(function () {
     Route::post('/admin/users/{user}/block', [UserController::class, 'block'])->name('users.block');
     Route::post('/admin/users/{user}/unblock', [UserController::class, 'unblock'])->name('users.unblock');
     Route::get('/inbox', 'inbox')->name('inbox');
+    Route::post('/user/{user}/withdraw', 'withdraw')->name('user.withdraw');
 });
 
 Route::controller(BidController::class)->group(function () {
@@ -125,8 +127,8 @@ Route::controller(MiscController::class)->group(function () {
     Route::get('/faq', 'faq')->name('faq');
 });
 
-// Ratings
-Route::controller(RatingController::class)->group(function () {
-    Route::get('/user/{receiverId}/rate', 'create')->name('ratings.create'); // Rating form
-    Route::post('/user/{receiverId}/rate', 'store')->name('ratings.store'); // Submit rating
+
+
+Route::controller(TransactionController::class)->group(function () {
+    Route::post('/transaction/{transaction}/pay', 'pay')->name('transaction.pay');
 });

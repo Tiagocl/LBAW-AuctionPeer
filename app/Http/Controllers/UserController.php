@@ -184,7 +184,21 @@ class UserController extends Controller
         return back()->with('success', 'Deposit successful.');
     }
 
-        /**
+    public function withdraw(Request $request, User $user) {
+        $this->authorize('deposit', $user);
+
+        $validated = $request->validate([
+            'amount' => 'required|numeric|min:0'
+        ]);
+
+        $user->balance -= $validated['amount'];
+        $user->save();
+
+        return back()->with('success', 'Deposit successful.');
+    }
+
+
+    /**
      * Block the specified user
      */
     public function block(User $user)

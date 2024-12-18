@@ -13,6 +13,13 @@
                 <button type="submit">Deposit</button>
             </div>
         </form>
+        <form action="{{route('user.withdraw', $user)}}" method="POST">
+            @csrf
+            <div id="deposit">
+                <input type="number" name="amount" id="amount" placeholder="Amount" required>
+                <button type="submit">Withdraw</button>
+            </div>
+        </form>
     </div>
     <div class="rectangle-div">
         <h1>My Transactions</h1>
@@ -20,7 +27,11 @@
         @foreach($user->buyerTransactions()->get() as $transaction)
             @php($auction = $transaction->auction)
             <div class="rectangle-div transaction red">
-                <span>{{$auction->title}}</span>
+                <span>
+                    <a href="{{route('auction.show', $auction)}}">
+                    {{$auction->title}}
+                    </a>
+                </span>
                 <span>Seller:
                     <a href="{{route('user.show', $auction->creator()->first())}}">
                     {{$auction->creator()->first()->username}}
@@ -28,6 +39,12 @@
                 </span>
                 <span>{{$transaction->created_at}}</span>
                 <span>{{$transaction->amount}}€</span>
+                @if(!$transaction->is_payed)
+                    <form action="{{route('transaction.pay', $transaction)}}" method="POST">
+                        @csrf
+                        <button type="submit">Pay</button>
+                    </form>
+                @endif
             </div>
         @endforeach
 
@@ -35,7 +52,11 @@
         @foreach($user->sellerTransactions()->get() as $transaction)
             @php($auction = $transaction->auction)
             <div class="rectangle-div transaction green">
-                <span>{{$auction->title}}</span>
+                <span>
+                    <a href="{{route('auction.show', $auction)}}">
+                    {{$auction->title}}
+                    </a>
+                </span>
                 <span>Buyer:
                     <a href="{{route('user.show', $transaction->buyer()->first())}}">
                     {{$transaction->buyer()->first()->username}}
@@ -43,6 +64,11 @@
                 </span>
                 <span>{{$transaction->created_at}}</span>
                 <span>{{$transaction->amount}}€</span>
+                @if(!$transaction->is_payed)
+                    <span>Not Payed</span>
+                @else
+                    <span>Payed</span>
+                @endif
             </div>
         @endforeach
     </div>
