@@ -1,0 +1,150 @@
+@startuml
+skinparam groupInheritance 2
+
+entity Account {
+  Username : TEXT
+  Email : TEXT
+  Password : TEXT
+  Created_At : TIMESTAMP
+  Updated_At : TIMESTAMP
+  Profile_Picture : TEXT
+  Birth_Date : DATE
+  Address : TEXT
+  Is_Deleted : BOOLEAN
+  Is_Admin : BOOLEAN
+  Balance : NUMERIC
+  Status : ENUM
+  
+  ..constraints..
+  (Username NOT NULL)
+  (Email NOT NULL UNIQUE)
+  (Password NOT NULL)
+  (Created_At NOT NULL)
+  (Balance CHECK Balance >= 0 DEFAULT 0)
+  (Status DEFAULT 'active')
+}
+
+entity Auction {
+  Title : TEXT
+  Description : TEXT
+  Start_Date : TIMESTAMP
+  End_Date : TIMESTAMP
+  Status : ENUM
+  Minimum_Bid : NUMERIC
+  Current_Bid : NUMERIC
+  Picture : TEXT
+  Created_At : TIMESTAMP
+  Updated_At : TIMESTAMP
+  
+  ..constraints..
+  (Title NOT NULL)
+  (Start_Date NOT NULL)
+  (End_Date NOT NULL CHECK End_Date >= Start_Date + 1 day)
+  (Status DEFAULT 'active')
+  (Minimum_Bid CHECK Minimum_Bid >= 0 DEFAULT 0)
+  (Current_Bid CHECK Current_Bid >= Minimum_Bid)
+}
+
+entity Category {
+  Name : TEXT
+  
+  ..constraints..
+  (Name NOT NULL UNIQUE)
+}
+
+entity Bid {
+  Amount : NUMERIC
+  Created_At : TIMESTAMP
+  Updated_At : TIMESTAMP
+  
+  ..constraints..
+  (Amount NOT NULL)
+  (Created_At NOT NULL)
+}
+
+entity Rating {
+  Score : INTEGER
+  Comment : TEXT
+  Created_At : TIMESTAMP
+  Updated_At : TIMESTAMP
+  
+  ..constraints..
+  (Score NOT NULL CHECK 0 <= Score <= 5)
+  (Created_At NOT NULL)
+}
+
+entity Comment {
+  Text : TEXT
+  Created_At : TIMESTAMP
+  Updated_At : TIMESTAMP
+  
+  ..constraints..
+  (Text NOT NULL)
+  (Created_At NOT NULL)
+}
+
+entity Report {
+  Reason : TEXT
+  Status : ENUM
+  Created_At : TIMESTAMP
+  Updated_At : TIMESTAMP
+  
+  ..constraints..
+  (Reason NOT NULL)
+  (Created_At NOT NULL)
+  (Status DEFAULT 'not_processed')
+}
+
+entity Notifications {
+  Content : TEXT
+  Type : ENUM
+  Link : TEXT
+  Created_At : TIMESTAMP
+  Updated_At : TIMESTAMP
+  Hidden : BOOLEAN
+  
+  ..constraints..
+  (Content NOT NULL)
+  (Created_At NOT NULL)
+  (Type NOT NULL)
+  (Hidden DEFAULT FALSE)
+}
+
+entity Transactions {
+  Amount : NUMERIC
+  Created_At : TIMESTAMP
+  Updated_At : TIMESTAMP
+  Is_Payed : BOOLEAN
+  
+  ..constraints..
+  (Amount NOT NULL)
+  (Created_At NOT NULL)
+}
+
+entity Following {
+  Created_At : TIMESTAMP
+  Updated_At : TIMESTAMP
+  
+  ..constraints..
+  (Created_At NOT NULL)
+}
+
+Account "1" -- "0..*" Auction : creates
+Auction "1" -- "0..*" Bid : receives
+Account "1" -- "0..*" Bid : places
+Auction "1" -- "0..*" Rating : has
+Account "1" -- "0..*" Rating : gives
+Account "1" -- "0..*" Rating : receives
+Auction "1" -- "0..*" Comment : has
+Account "1" -- "0..*" Comment : writes
+Auction "1" -- "0..*" Report : has
+Account "1" -- "0..*" Report : reports
+Account "1" -- "0..*" Notifications : receives
+Auction "1" -- "0..1" Transactions : results_in
+Account "1" -- "0..*" Transactions : participates_in
+Account "1" -- "0..*" Following : follows
+Category "1" -- "0..*" Auction : categorizes
+
+hide empty members
+
+@enduml
