@@ -8,7 +8,7 @@
 }
 
 html {
-  width: 98vw;
+  width: 98.8vw;
   height: 90vh;
 }
 
@@ -154,7 +154,7 @@ main {
 .header-info .logo { 
   position: relative;
   right: 50px;
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 700;
  
   color: var(--text);
@@ -682,8 +682,14 @@ input[type=password]:focus {
 .bid-item {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 10px;
   border-bottom: 1px solid #ccc;
+}
+
+.withdraw-button {
+  position: relative;
+  top: 5px;
 }
 
 .bid-info {
@@ -696,11 +702,13 @@ input[type=password]:focus {
 }
 
 .bid-amount {
-  color: #9b4dca;
+  color: var(--second-color);
+  position: relative;
+  top: 2px;
 }
 
 .bid-date {
-  color: #666;
+  color: white;
 }
 
 .auction-body {
@@ -720,15 +728,19 @@ input[type=password]:focus {
   font-weight: bold;
   background-color: var(--main-color);
   color: white;
-  padding: 20px 50px;
+  padding: 20px 80px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .auction-description {
+  font-family: "Mona Sans";
   font-size: 1.4rem;
-  background-color: white;
+  background-color: var(--main-color);
+  color: white;
   padding: 20px;
+  font-size: 1.5rem;
+  padding: 20px 80px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -742,11 +754,18 @@ input[type=password]:focus {
   display: flex;
   flex-direction: row;
   gap: 10px;
-  background-color: white;
+  background-color: var(--main-color);
+  color: white;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   justify-content: space-between;
+}
+
+.bidding-division {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .auction-bidding p {
@@ -793,6 +812,28 @@ span { cursor: pointer;}
   gap: 10px;
 }
 
+#auction-seller-report {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  bottom: 4px;
+  gap: 10px;
+  text-align: center;
+}
+
+
+#auction-seller-report .report {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+  border-radius: 5px;
+  padding: 0 20px;
+  height: 38px;
+  
+}
+
 span {
   margin: 0;
 }
@@ -803,7 +844,8 @@ form {
   
 
 .auction-info {
-  background-color: white;
+  background-color: var(--main-color);
+  color: white;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -916,14 +958,6 @@ input[type="range"] {
   margin: auto;
 }
 
-#auction-seller-report {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-
-    gap: 10px;
-    text-align: center;
-}
 
 .table-flex form {
   margin: 0;

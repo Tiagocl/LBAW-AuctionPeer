@@ -36,7 +36,7 @@
                         @if($bid->user_id === Auth::id())
                         <form action="{{ route('bids.withdraw', ['auction' => $auction->id, 'bid' => $bid->id]) }}" method="POST" style="display:inline;">
                             @csrf
-                            <button type="submit" class="btn btn-danger btn-sm">Withdraw Bid</button>
+                            <button type="submit" class="withdraw-button">Withdraw Bid</button>
                         </form>
                         @endif
                         <div class="bid-date">{{ $bid->created_at->format('Y-m-d H:i') }}</div>
@@ -132,9 +132,11 @@
                 <span class="auction-seller">
                     Seller: <a href="{{url('/user/' . $auction->creator->id)}}">{{$auction->creator->getUsername()}}</a>
                 </span>
+                <div class="report">
                 <span>
-                    <a href="{{ route('report.create', $auction) }}">Report Auction</a>
+                    <a idhref="{{ route('report.create', $auction) }}">Report Auction</a>
                 </span>
+                </div>
             </div>
             @if($user && $auction->creator_id == $user->id)
             <a href="{{ route('auction.edit', $auction) }}" class="edit-auction">Edit Auction</a>
