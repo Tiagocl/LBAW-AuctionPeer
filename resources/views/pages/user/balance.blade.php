@@ -17,11 +17,11 @@
             @csrf
             <div id="deposit">
                 <input type="number" name="amount" id="amount" placeholder="Amount" required>
-                <button type="submit">Withdraw</button>
+                <button id="withdraw" type="submit">Withdraw</button>
             </div>
         </form>
     </div>
-    <div class="rectangle-div">
+    <div class="rectangle-div" id="my-transactions">
         <h1>My Transactions</h1>
         <h2>Buying:</h2>
         @foreach($user->buyerTransactions()->get() as $transaction)

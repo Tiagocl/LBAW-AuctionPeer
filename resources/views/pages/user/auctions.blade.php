@@ -21,7 +21,7 @@
         </div>
 
         <div class="mt-6">
-            {{ $auctions->links() }} <!-- Pagination links -->
+            {{ $auctions->links() }} 
         </div>
     @endif
 </div>

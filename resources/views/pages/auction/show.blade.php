@@ -9,7 +9,7 @@
             @if($auction->picture)
             <img src="{{ asset('storage/' . $auction->picture) }}" alt="{{ $auction->title }}" class="auction-image">
             @else
-            <img src="https://via.placeholder.com/700" alt="{{ $auction->title }}" class="auction-image">
+            <img src="https://placehold.co/700x700/2A292F/white" alt="{{ $auction->title }}" class="auction-image">
             @endif
         </div>
         <div class="bids">

@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container mx-auto p-4">
-    <div class="bg-white p-6 rounded-lg shadow">
+    <div class="faq-div p-6 rounded-lg shadow">
         <h1 class="text-3xl font-bold mb-4">Frequently Asked Questions</h1>
         <div class="faq-item mb-4">
             <h2 class="text-2xl font-semibold mb-2">What is AuctionPeer?</h2>
