@@ -33,9 +33,9 @@
             <header>
                 @include('layouts.header')
             </header>
-            <section id="content">
+            <div id="content">
                 @yield('content')
-            </section>
+            </div>
         </main>
 
         <footer class="footer bg-light text-center py-3">
