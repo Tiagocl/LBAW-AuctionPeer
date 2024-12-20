@@ -45,9 +45,6 @@ class EventServiceProvider extends ServiceProvider
             SendAuctionFollowedNotification::class,
         ],
 
-        GlobalNotification::class => [
-            SendGlobalNotification::class,
-        ],
     ];
 
 
