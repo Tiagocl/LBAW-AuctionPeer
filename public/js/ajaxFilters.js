@@ -44,7 +44,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         auctions.forEach(auction => {
-            const imageUrl = auction.picture ? `${baseUrl}/storage/${auction.picture}` : 'https://via.placeholder.com/300';
+            const imageUrl = auction.picture
+                ? `${baseUrl}/storage/${auction.picture}`
+                : 'https://placehold.co/300x300/white/212027';
             const auctionCard = `
                 <a href="${baseUrl}/auction/${auction.id}" class="auction-card-link">
                     <div class="auction-card rectangle-div">
@@ -60,18 +62,18 @@ document.addEventListener('DOMContentLoaded', function () {
                             </div>
                             <div class="border"></div>
                             <div class="description">
-                                <span>Description</span>
+                                <span>Description:</span>
                                 <p>${auction.description}</p>
                             </div>
                             <div class="border"></div>
                             <div class="prices">
                                 <div class="entry-price">
-                                    <span>Entry Price</span>
-                                    <span>$${auction.minimum_bid}</span>
+                                    <span id="price">Entry Price</span>
+                                    <span id="value">$${auction.minimum_bid}</span>
                                 </div>
                                 <div class="current-bid-price">
-                                    <span>Current price</span>
-                                    <span>$${auction.current_bid}</span>
+                                    <span id="price">Current price</span>
+                                    <span id="value">$${auction.current_bid}</span>
                                 </div>
                             </div>
                         </div>

@@ -232,6 +232,7 @@ main {
 }
 
 .search-container input {
+  cursor: text;
   background-color: var(--main-color);
   border: 1.5px solid #424242; /* Set initial border */
   border-radius: 15px;
