@@ -341,7 +341,7 @@ input[type="range"]:focus::-moz-range-thumb{
 
 
 .border {
-  border: 1px solid #9c9c9c;
+  border: 1px solid white;
   border-radius: 10px;
 }
 
@@ -376,7 +376,7 @@ input[type="range"]:focus::-moz-range-thumb{
 }
 
 .description span { 
-  font-size: 2rem;
+  font-size: 1.9rem;
   font-weight: 400;
 }
 
