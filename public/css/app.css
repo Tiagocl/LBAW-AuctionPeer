@@ -28,26 +28,28 @@ main {
 .footer {
  
   border-top: 1px solid #ccc;
-  color: #333;
+  color: white;
   width: 100%;
-  position: relative;
-  left: 0;
-  bottom: 0;
-  border-radius: 10px; /* Add rounded corners */
+  background-color: var(--main-color);
+  margin-top: 20px;
 }
 
 .footer .container {
-  max-width: 1200px; /* Adjust the max-width as needed */
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
 }
 
 .footer a {
-  color: #333;
+  color: white;
   text-decoration: none;
 }
 
 .footer a:hover {
   text-decoration: underline;
+
 }
 
 .header-container {
@@ -74,14 +76,44 @@ main {
   gap: 20px;
 }
 
-.left-about span{ 
-
-  
+.left-about span,
+#balance{ 
   color: var(--text);
+  position: relative;
+  transition-timing-function: cubic-bezier(0.25,0.8,0.25,1);
+  transition-duration: 400ms;
+  transition-property: color;
+}
+
+.left-about span:hover,
+#balance:hover {
+  color: black;
+}
+
+.left-about span:hover:after,
+#balance:hover:after { 
+  width: 100%;
+  left: 0;
+}
+
+.left-about span:after,
+ #balance:after{ 
+  content: "";
+  pointer-events: none;
+  bottom: -2px;
+  left: 50%;
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background-color: black;
+  transition-timing-function: cubic-bezier(0.25,0.8,0.25,1);
+  transition-duration: 400ms;
+  transition-property: width,left;
 }
 
 .left-about #service {
   position: relative;
+  top: 1px;
   display: flex;
   align-self: center;
 }
@@ -968,7 +1000,7 @@ input[type="range"] {
   position: absolute;
   top: -5px;
   right: -5px;
-  background-color: var(--second-color);
+  background-color: red;
   color: white;
   border-radius: 25%;
   padding: 1px 4px;
