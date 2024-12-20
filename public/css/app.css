@@ -52,7 +52,7 @@ main {
 
 .header-container {
 
-  padding: 30px 50px 0 50px;
+  padding: 30px 70px 0 70px;
   width: 100%;
   border-radius: 10px;
   height: 100px;
@@ -87,6 +87,8 @@ main {
 }
 
 .header-info .logo { 
+  position: relative;
+  right: 50px;
   font-size: 2.5rem;
   font-weight: 700;
  
@@ -99,8 +101,11 @@ main {
 
 .header-info .about{ 
   display: flex;
+  align-items: center;
   gap: 20px;
+  overflow: visible;
 }
+
 
 .header-info .about a { 
   color: black;
@@ -113,6 +118,100 @@ main {
   height: 1px;
   margin-bottom: 30px;
 }
+
+/* .select-wrapper 
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1px;
+  padding-left: 5px;
+  background-color: var(--main-color);
+  border-radius: 10px;
+  width: 60px;
+  height: 50px;
+  overflow: hidden; 
+} */
+
+.dropdown-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1px;
+  padding-left: 5px;
+  background-color: var(--main-color);
+  border-radius: 10px;
+  
+  width: 60px;
+  height: 50px;
+   
+}
+
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 50px; 
+  right: 0;
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  border-top-right-radius: 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  display: none; /* Hidden by default */
+  z-index: 1000;
+  list-style: none;
+  padding: 10px 0;
+  min-width: 150px;
+}
+
+.dropdown-menu li {
+  padding: 0px 20px;
+  text-align: left;
+}
+
+.dropdown-menu li:hover {
+  background-color: #333;
+}
+
+.dropdown-menu a, 
+.logout-link {
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+  display: block;
+  cursor: pointer;
+}
+
+.header-container, .about {
+  overflow: visible; 
+}
+
+
+.dropdown-menu li {
+  padding: 10px 20px;
+  text-align: left;
+}
+
+.dropdown-menu li:hover {
+  background-color: #333;
+}
+
+.dropdown-menu li #drop-a, 
+.logout-link {
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+  display: block;
+  cursor: pointer;
+}
+
+
+
+
 .cards-container {
   display: flex;
   flex-direction: column;
@@ -247,7 +346,7 @@ input[type="range"]:focus::-moz-range-thumb{
   border-radius: 10px;
   display: flex;
   gap: 10px;
-  padding: 0 50px;
+  padding: 0 70px;
 }
 
 .filter-section {
@@ -868,7 +967,7 @@ input[type="range"] {
   position: absolute;
   top: -5px;
   right: -5px;
-  background-color: red;
+  background-color: var(--second-color);
   color: white;
   border-radius: 25%;
   padding: 1px 4px;

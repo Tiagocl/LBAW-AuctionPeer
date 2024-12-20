@@ -24,6 +24,7 @@
     <script type="text/javascript" src="{{ url('js/app.js') }}" defer></script>
     <script type="text/javascript" src="{{ url('js/clearFilters.js') }}" defer></script>
     <script type="text/javascript" src="{{ url('js/ajaxFilters.js') }}" defer></script>
+    <script type="text/javascript" src="{{ url('js/dropDownmenu.js') }}" defer></script>
     <script src="https://js.pusher.com/7.0/pusher.min.js" defer></script>
 </head>
 <body>
