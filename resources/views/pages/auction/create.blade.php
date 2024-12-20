@@ -9,7 +9,7 @@
         @csrf
         <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" class="form-control" id="title" name="title" placeholder="Auction Title" required>
+            <input type="text" class="form-control" id="title" name="title" placeholder="Auction Title" value="{{ old('title') }}" required>
         </div>
         <div class="form-group">
             <label for="description" >Description</label>
@@ -24,11 +24,11 @@
         </div>
         <div class="form-group">
             <label for="minimum_bid">Minimum Bid</label>
-            <input placeholder="Minimum Bid" type="number" class="form-control" id="minimum_bid" name="minimum_bid" required>
+            <input placeholder="Minimum Bid" type="number" class="form-control" id="minimum_bid" name="minimum_bid" value="{{ old('minimum_bid') }}" required>
         </div>
         <div class="form-group">
             <label for="end_date">End Date</label>
-            <input placeholder="Enter End Date" type="datetime-local" class="form-control" id="end_date" name="end_date" required>
+            <input placeholder="Enter End Date" type="datetime-local" class="form-control" id="end_date" name="end_date" value="{{ old('end_date') }}" required>
         </div>
         <div class="form-group">
             <label for="category_id">Category</label>
