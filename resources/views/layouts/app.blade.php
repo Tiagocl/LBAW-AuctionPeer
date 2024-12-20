@@ -28,7 +28,7 @@
 </head>
 <body>
     <div id="app">
-        <div id="notifications-container" class="fixed class="fixed bottom-4 right-4 z-50 space-y-4"></div>
+        <div id="notifications-container" class="fixed bottom-4 right-4 z-50 space-y-4"></div>
         <main>
             <header>
                 @include('layouts.header')
