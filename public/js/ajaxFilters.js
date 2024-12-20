@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const maxPriceInput = document.querySelector('.current-bid input');
     const applyFiltersButton = document.querySelector('.apply-filters');
     const clearFilterButton = document.getElementById('clear-filters');
-    const cardsContainer = document.querySelector('.cards-container');
+    const cardsContainer = document.querySelector('.all-cards'); // Updated to target only the grid
 
     async function fetchFilteredAuctions() {
         const sortBy = sortSelect.value;
@@ -36,15 +36,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function renderAuctions(auctions) {
-        cardsContainer.innerHTML = ''; // Clear existing content
+        cardsContainer.innerHTML = ''; // Clear existing cards only
 
-        // Check if auctions exist
         if (auctions.length === 0) {
             cardsContainer.innerHTML = '<p>No auctions found.</p>';
             return;
         }
 
-        // Loop through each auction and create a card
         auctions.forEach(auction => {
             const imageUrl = auction.picture ? `${baseUrl}/storage/${auction.picture}` : 'https://via.placeholder.com/300';
             const auctionCard = `
@@ -84,22 +82,19 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Attach event listeners
     applyFiltersButton.addEventListener('click', function (event) {
-        event.preventDefault(); // Prevent form submission
+        event.preventDefault();
         fetchFilteredAuctions();
     });
 
     clearFilterButton.addEventListener('click', function (event) {
-        event.preventDefault(); // Prevent link navigation
+        event.preventDefault();
 
-        // Reset filters
         sortSelect.value = '';
         categorySelect.value = '';
         minPriceInput.value = 0;
         maxPriceInput.value = 10000;
 
-        // Fetch all auctions after clearing filters
         fetchFilteredAuctions();
     });
 });
@@ -120,5 +115,3 @@ function timeFromNow(endDate) {
 
     return `${days}d ${hours}h ${minutes}m ${seconds}s`;
 }
-
-

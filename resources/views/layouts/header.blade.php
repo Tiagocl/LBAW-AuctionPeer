@@ -10,32 +10,37 @@
 
 <body>
     <div class="header-container">
-    <div class="header-info">
-        <div class="logo">
-        <a href="{{ url('/auction') }}" class="logo">
-            <div class="logo-img">AP</div>
-            <span>AuctionPeer</span>
-        </a>
-        </div>
-        <div class="about">
-            <span><a href="{{ route('misc.about') }}">About</a></span>
-            <span>Contact</span>
-            <span><a href="{{ route('faq') }}">FAQ</a></span>
-            <span>Services</span>
-            @auth
+        <div class="header-info">
+            <div class="left-about">
+                <a href="{{ url('/auction') }}" >
+                    <span>Home</span>
+                </a>
+                <span id="service">Service</span>
+                <a href="{{ route('faq') }}"><span>Questions</span></a>
+                <a href="{{ route('misc.about') }}"><span>About Us</span></a>
+            </div>
+
+            <div class="logo">
+                <a href="{{ url('/auction') }}" class="logo">
+                    <span>AuctionPeer.</span>
+                </a>
+            </div>
+            <div class="about">
+
+                @auth
                 @if(auth()->user()->isAdmin())
-                    <a href="{{ route('admin.index') }}" class="admin-panel">Admin Panel</a>
+                <a href="{{ route('admin.index') }}" class="admin-panel">Admin Panel</a>
                 @endif
                 <form action="{{ route('logout') }}" method="GET" id="logout-form">
                     @csrf
                     <span class="submit-button" onclick="document.getElementById('logout-form').submit();">Logout</span>
                 </form>
                 @if(!auth()->user()->isAdmin())
-                        <a href="{{route('user.followed', auth()->user())}}" class="followed">Followed</a>
-                        <a href="{{route('user.balance', auth()->user())}}">{{auth()->user()->balance}}€</a>
-                    @endif
+                <a href="{{route('user.followed', auth()->user())}}" class="followed">Followed</a>
+                <a href="{{route('user.balance', auth()->user())}}">{{auth()->user()->balance}}€</a>
+                @endif
 
-                    <a href="{{ route('inbox') }}">
+                <a href="{{ route('inbox') }}">
                     <div class="select-wrapper" style="position: relative;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#424242" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-inbox">
                             <path d="M4 4h16v16H4z" />
@@ -43,13 +48,13 @@
                             <path d="M7 12l5 5 5-5" />
                         </svg>
                         @if($notificationCount > 0)
-                            <span class="notification-count">{{ $notificationCount }}</span>
+                        <span class="notification-count">{{ $notificationCount }}</span>
                         @endif
                     </div>
                 </a>
                 </a>
 
-                    <a href="{{ route('user.show', auth()->user()) }}">
+                <a href="{{ route('user.show', auth()->user()) }}">
                     <div class="select-wrapper">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#424242" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-round">
                             <circle cx="12" cy="8" r="5" />
@@ -57,40 +62,31 @@
                         </svg>
                     </div>
                 </a>
-            @endauth
+                @endauth
 
-            @guest
+                @guest
                 <a href="{{ route('login') }}" class="login-button">Login</a>
-            @endguest
-        </div>
-    </div>
-
-    <div class="search-social">
-        <div class="search-container">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon">
-                <circle cx="11" cy="11" r="8" />
-                <path d="m21 21-4.3-4.3" />
-            </svg>
-            <form action="{{ route('search.results', ['query' => request('query')]) }}" method="GET">
-                @csrf
-                    <input type="search" name="query" id="query" class="form-control" placeholder="Search auctions" required>
-            </form>
+                @endguest
             </div>
-    </div>
-    </div>
-    <script src="{{ asset('js/app.js') }}"></script>
+        </div>
+
+        
 
     @if (session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
-        </div>
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
     @endif
 
     @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
     @endif
+
+    
+    </div>
+    <div class="header-border"></div>
 </body>
 
 </html>
