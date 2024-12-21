@@ -56,12 +56,11 @@ class UpdateAuctionStatuses extends Command
             event(new AuctionEnded($auction, $auction->creator));
 
             // Notify the buyer of the auction that they have won
-            // event(new AuctionWon($auction, $bid->user, $auction->title)); //TODO: Implement this event
+            event(new AuctionWon($auction, $bid->user)); //TODO: Implement this event
 
-            // Notify all other bidders that they have lost
             $bidders = Bid::where('auction_id', $auction->id)->where('user_id', '!=', $bid->user_id)->get();
             foreach ($bidders as $bidder) {
-                event(new AuctionLost($auction, $bidder->user, $auction->title));
+                event(new AuctionEnded($auction, $bidder->user));
             }
 
             $transaction = Transaction::create([
