@@ -28,14 +28,14 @@
 </head>
 <body>
     <div id="app">
-        <div id="notifications-container" class="fixed class="fixed bottom-4 right-4 z-50 space-y-4"></div>
+        <div id="notifications-container" class="fixed bottom-4 right-4 z-50 space-y-4"></div>
         <main>
             <header>
                 @include('layouts.header')
             </header>
-            <section id="content">
+            <div id="content">
                 @yield('content')
-            </section>
+            </div>
         </main>
 
         <footer class="footer bg-light text-center py-3">
@@ -84,8 +84,10 @@
                 notificationSound.play();
 
                 notification.innerHTML = `
-                    <div class="message">${message}</div>
-                    <span class="close-btn">&times;</span>
+                    <a href="/inbox" class="notification-link">
+                        <div class="message">${message}</div>
+                        <span class="close-btn">&times;</span>
+                    </a>
                 `;
 
                 notificationsContainer.appendChild(notification);

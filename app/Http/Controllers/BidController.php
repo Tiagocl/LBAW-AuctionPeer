@@ -105,11 +105,9 @@ class BidController extends Controller
     }
 
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function withdraw($auctionId, $bidId)
-    {
+    
+    //remove the specified resource from storage
+    public function withdraw($auctionId, $bidId){
         try {
             $bid = Bid::findOrFail($bidId);
             $user = User::find(auth()->id());
