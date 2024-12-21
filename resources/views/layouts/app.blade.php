@@ -84,8 +84,10 @@
                 notificationSound.play();
 
                 notification.innerHTML = `
-                    <div class="message">${message}</div>
-                    <span class="close-btn">&times;</span>
+                    <a href="/inbox" class="notification-link">
+                        <div class="message">${message}</div>
+                        <span class="close-btn">&times;</span>
+                    </a>
                 `;
 
                 notificationsContainer.appendChild(notification);
