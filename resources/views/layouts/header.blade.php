@@ -22,7 +22,7 @@
 
             <div class="logo">
                 <a href="{{ url('/auction') }}" class="logo">
-                    <span>AuctionPeer.</span>
+                    AuctionPeer.
                 </a>
             </div>
             <div class="about">

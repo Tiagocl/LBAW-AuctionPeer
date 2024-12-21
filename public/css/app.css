@@ -94,14 +94,25 @@ main {
 
 }
 
-.header-info { 
+.header-info {
   font-family: "Libre Baskerville";
   font-size: 1.7rem;
   font-weight: 600;
   display: flex;
-  justify-content: space-between;
+  justify-content: center; /* Center the elements */
   align-items: center;
+  gap: 200px; /* Add spacing between sections */
+  position: relative; /* Allows positioning of the left and right sections */
+}
 
+.header-info .left-about {
+  position: absolute;
+  left: 0; /* Align the left section to the start */
+}
+
+.header-info .about {
+  position: absolute;
+  right: 0; /* Align the right section to the end */
 }
 
 .left-about { 
@@ -151,9 +162,14 @@ main {
   align-self: center;
 }
 
-.header-info .logo { 
+.logo a {
+  text-align: center;
+
+}
+
+.header-info .logo {
+  margin: 0 auto;
   position: relative;
-  right: 50px;
   font-size: 3rem;
   font-weight: 700;
  
@@ -1097,30 +1113,28 @@ input[type="range"] {
   align-items: flex-start;
   padding: 2.5rem; 
   height: 100vh;
-  background-color: #f7fafc; 
+  background-color: var(--background); 
 }
 
 .login-register-container {
   width: 100%;
   max-width: 36rem;
-  background-color: white; 
+  background-color: var(--main-color); 
   padding: 1.5rem; 
   border-radius: 0.5rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-              0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 .login-register-header {
   font-size: 1.5rem; 
   font-weight: 600; 
   text-align: center;
-  color: #2d3748;
+  color: white;
 }
 
 .login-register-subheader {
-  font-size: 0.875rem; 
+  font-size: 1rem; 
   text-align: center;
-  color: #718096;
+  color: white;
   margin-top: 0.25rem;
 }
 
@@ -1132,7 +1146,7 @@ input[type="range"] {
   display: block;
   font-size: 0.875rem; 
   font-weight: 500; 
-  color: #4a5568; 
+  color: white; 
 }
 
 .form-input {
@@ -1141,12 +1155,11 @@ input[type="range"] {
   padding: 0.75rem;
   border: 1px solid #d2d6dc;
   border-radius: 0.5rem;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); 
+  color: white;
 }
 
 .form-input:focus {
   outline: none; 
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.5); 
 }
 
 .error-message {
@@ -1157,7 +1170,7 @@ input[type="range"] {
 
 .forgot-password {
   font-size: 1rem;
-  color: #718096;
+  color: white;
 }
 
 .forgot-password a {
@@ -1181,7 +1194,7 @@ input[type="range"] {
   display: inline-flex;
   align-items: start;
   font-size: 1rem;
-  color: #718096;
+  color: white;
 }
 
 .checkbox {
@@ -1224,14 +1237,14 @@ input[type="range"] {
 
 .divider-text {
   font-size: 0.875rem;
-  color: #a0aec0;
+  color: white;
   padding: 0 1rem;
 }
 
 .sign-up-link {
   text-align: center;
   font-size: 0.875rem;
-  color: #718096;
+  color: white;
 }
 
 .sign-up-link a {
