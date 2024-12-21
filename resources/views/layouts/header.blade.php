@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search</title>
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-</head>
-
-<body>
     <div class="header-container">
     <div class="header-info">
         <div class="logo">
@@ -47,8 +37,6 @@
                         @endif
                     </div>
                 </a>
-                </a>
-
                     <a href="{{ route('user.show', auth()->user()) }}">
                     <div class="select-wrapper">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#424242" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-round">
@@ -91,6 +79,3 @@
             {{ session('success') }}
         </div>
     @endif
-</body>
-
-</html>
