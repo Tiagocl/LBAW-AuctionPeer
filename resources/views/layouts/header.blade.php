@@ -8,6 +8,7 @@
                 <a href="{{ route('features') }}"><span id="service">Services</span></a>
                 <a href="{{ route('faq') }}"><span>FAQ</span></a>
                 <a href="{{ route('misc.about') }}"><span>About Us</span></a>
+                <a href="{{ route('contacts') }}"><span>Contacts</span></a>
             </div>
 
             <div class="logo">
