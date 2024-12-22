@@ -1178,7 +1178,7 @@ input[type="range"] {
 }
 
 .error-message {
-  font-size: 0.875rem; 
+  font-size: 1.5rem; 
   color: #f56565;
   margin-top: 0.25rem;
 }
