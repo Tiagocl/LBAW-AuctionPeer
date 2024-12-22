@@ -23,11 +23,11 @@
             <div class="prices">
                 <div class="entry-price">
                     <span id="price">Entry Price</span>
-                    <span id="value">$ {{ $auction->minimum_bid }}</span>
+                    <span id="value">€ {{ $auction->minimum_bid }}</span>
                 </div>
                 <div class="current-bid-price">
                     <span id="price">Current price</span>
-                    <span id="value">$ {{ $auction->current_bid }}</span>
+                    <span id="value">€ {{ $auction->current_bid }}</span>
                 </div>
             </div>
         </div>

@@ -1606,3 +1606,7 @@ input[type="range"] {
   height: 100px; /* Ensure a consistent height for empty cells */
 }
 
+.contacts {
+  background-color: var(--main-color);
+  color: white;
+}
