@@ -119,6 +119,12 @@ class BidController extends Controller
                 return redirect()->back()->with('error', 'You are not authorized to withdraw this bid.');
             }
 
+            $auction = Auction::findOrFail($auctionId);
+
+            if ($auction->status !== 'active') {
+                return redirect()->back()->with('error', 'You cannot withdraw a bid from an auction that is not active.');
+            }
+
             //Perform the withdrawal logic
             $bid->delete();
 
