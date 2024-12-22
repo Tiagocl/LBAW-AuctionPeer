@@ -1600,3 +1600,9 @@ input[type="range"] {
 .ratings-auction-link:hover {
   text-decoration: underline;
 }
+
+
+#user-table td {
+  height: 100px; /* Ensure a consistent height for empty cells */
+}
+
