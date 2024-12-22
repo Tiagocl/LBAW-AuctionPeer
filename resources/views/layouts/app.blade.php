@@ -28,9 +28,9 @@
     <script src="https://js.pusher.com/7.0/pusher.min.js" defer></script>
 </head>
 <body>
-    <div id="app">
+    <div id="app" class="flex flex-col h-screen justify-between">
         <div id="notifications-container" class="fixed class="fixed bottom-4 right-4 z-50 space-y-4"></div>
-        <main>
+        <main class="mb-auto">
             <header>
                 @include('layouts.header')
             </header>

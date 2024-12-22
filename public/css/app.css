@@ -850,6 +850,10 @@ span { cursor: pointer;}
   
 }
 
+#auction-seller-report .report a {
+  color: white;
+}
+
 span {
   margin: 0;
 }
