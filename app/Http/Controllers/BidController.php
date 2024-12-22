@@ -98,6 +98,10 @@ class BidController extends Controller
                 return redirect()->back()->with('error', 'You cannot place a bid if you already have the highest bid.');
             }
 
+            if (str_contains($exception->getMessage(), 'Bid amount must be higher than the current bid.')) {
+                return redirect()->back()->with('error', 'Your bid is lower than the current bid.');
+            }
+
             // For other database errors
             Log::error('An error occurred while placing the bid: ' . $exception->getMessage());
             return response()->json(['error' => 'An error occurred while placing the bid. Please try again later.'], 500);

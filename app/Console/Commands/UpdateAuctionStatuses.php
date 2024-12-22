@@ -7,7 +7,8 @@ use App\Models\Bid;
 use App\Models\Transaction;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
-
+use App\Events\AuctionEnded;
+use App\Events\AuctionWon;
 class UpdateAuctionStatuses extends Command
 {
     /**
