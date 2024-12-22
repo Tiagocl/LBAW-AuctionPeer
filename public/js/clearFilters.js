@@ -16,7 +16,7 @@ document.getElementById('clear-filters').addEventListener('click', function(even
     entryPriceDisplay.textContent = entryPriceRange.value;
 
     const currentBidRange = document.getElementById('current-bid-range');
-    if (currentBidRange) currentBidRange.value = 0;
+    if (currentBidRange) currentBidRange.value = 10000;
 
     const currentBidDisplay = document.getElementById('current-bid-value');
     currentBidDisplay.textContent = currentBidRange.value;

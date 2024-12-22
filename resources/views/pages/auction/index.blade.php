@@ -38,8 +38,8 @@
 
         <div class="current-bid">
             <label for="price">Current Bid:</label>
-            <input type="range" id="current-bid-range" name="price" min="0" max="10000" step="100" value="0">
-            <span id="current-bid-value">0</span>
+            <input type="range" id="current-bid-range" name="price" min="0" max="10000" step="100" value="10000">
+            <span id="current-bid-value">10000</span>
         </div>
 
         <!-- Submit Button -->
