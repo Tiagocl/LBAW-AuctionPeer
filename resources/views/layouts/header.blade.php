@@ -53,20 +53,26 @@
                     <!-- Dropdown menu -->
                     <ul class="dropdown-menu" id="dropdownMenu">
                         @if(!auth()->user()->isAdmin())
+                        <a href="{{ route('user.show', auth()->user()) }}">
                         <li>
-                            <a id="drop-a" href="{{ route('user.show', auth()->user()) }}">See Profile</a>
+                            <span id="drop-a">See Profile</span>
                         </li>
+                        </a>
+                        <a href="{{ route('user.followed', auth()->user()) }}">
                         <li>
-                            <a id="drop-a" href="{{ route('user.followed', auth()->user()) }}">Followed</a>
+                            <span id="drop-a" >Followed</span>
                         </li>
+                        </a>
                         
                         @endif
+                        <span onclick="document.getElementById('logout-form').submit();">
                         <li>
                             <form action="{{ route('logout') }}" method="GET" id="logout-form">
                                 @csrf
-                                <span class="logout-link" onclick="document.getElementById('logout-form').submit();">Logout</span>
+                                <span class="logout-link">Logout</span>
                             </form>
                         </li>
+                        </span>
                     </ul>
                 </div>
                 @endauth
