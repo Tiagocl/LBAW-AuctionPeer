@@ -15,7 +15,7 @@
                     $rating = round($user->ratingsReceived->avg('rating') ?? 0);
                 @endphp
                 @for ($i = 1; $i <= 5; $i++)
-                    <span class="{{ $i <= $rating ? 'text-yellow-400' : 'text-gray-500' }} text-lg">&#9733;</span>
+                    <span class="{{ $i <= $rating ? 'text-yellow-400' : 'text-gray-500' }} text-3xl">&#9733;</span>
                 @endfor
             </div>
             <p class="">Joined in: {{ $user->created_at->format('d.m.Y') }}</p>
@@ -92,7 +92,7 @@
                         <p class="text-white"> This user has no placed bids at the moment. </p>
                     @else
                         @foreach ($user->paginatedBids(3) as $bid)
-                        <a href="{{route('auction.show', $auction)}}">
+                        <a href="{{route('auction.show', $bid->auction)}}">
                         <li class="flex space-x-3">
                             <div class="w-40 h-40 bg-gray-300 rounded" style="background-image: url('{{ asset('storage/' . $bid->auction->picture) }}'); background-size: cover;"></div>
                             <div class="flex-1">
