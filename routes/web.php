@@ -74,11 +74,12 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/user/{user}/bids', [UserController::class, 'showBids'])->name('user.bids');
     Route::get('/user/{user}/auctions', [UserController::class, 'showAuctions'])->name('user.auctions');
     Route::post('/user/{user}/destroy', 'destroy')->name('user.destroy');
-    Route::get('/user/{user}/edit', 'edit')->name('user.edit'); //edit form
+    Route::get('/user/{user}/edit', 'edit')->name('user.edit');
     Route::post('/user/{user}', 'update')->name('user.update');
     Route::get('/user/{user}/followed', 'showFollowed')->name('user.followed');
     Route::get('/user/{user}/balance', 'showBalance')->name('user.balance');
     Route::post('/user/{user}/deposit', 'deposit')->name('user.deposit');
+    Route::get('/user/{user}/ratings', [UserController::class, 'showRatings'])->name('user.ratings');
     Route::get('/admin', 'admin_index')->name('admin.index');
     Route::get('/admin/users', 'index')->name('user.index');
     Route::get('/admin/users/create', 'create')->name('user.create');

@@ -4,6 +4,11 @@ export default {
   theme: {
     extend: {},
   },
+  color: {
+    'main': '#2A292F',
+    'second': '#f48500',
+    'background': '#DEDBC9',
+  },
   plugins: [],
 }
 

@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container mx-auto p-4">
-    <div class="flex flex-col md:flex-row bg-white p-6 rounded-lg shadow">
+    <div class="flex flex-col md:flex-row contacts p-6 rounded-lg shadow">
         <div id="map" class="w-full md:w-1/2 h-64 md:h-auto rounded-lg mb-4 md:mb-0"></div>
         <div class="md:ml-6 w-full md:w-1/2">
             <h1 class="text-3xl font-bold mb-4">Contacts</h1>

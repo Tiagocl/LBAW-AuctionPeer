@@ -237,4 +237,10 @@ class UserController extends Controller
         
         return view('pages.user.inbox', compact('notifications'));
     }
+
+    public function showRatings(User $user)
+    {
+        $ratings = $user->ratingsReceived();
+        return view('pages.user.ratings', compact('user', 'ratings'));
+    }
 }

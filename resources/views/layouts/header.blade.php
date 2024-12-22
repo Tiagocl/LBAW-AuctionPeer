@@ -1,81 +1,107 @@
 
     <div class="header-container">
-    <div class="header-info">
-        <div class="logo">
-        <a href="{{ url('/auction') }}" class="logo">
-            <div class="logo-img">AP</div>
-            <span>AuctionPeer</span>
-        </a>
-        </div>
-        <div class="about">
-            <span><a href="{{ route('misc.about') }}">About</a></span>
-            <span>Contact</span>
-            <span><a href="{{ route('faq') }}">FAQ</a></span>
-            <span>Services</span>
-            @auth
-                @if(auth()->user()->isAdmin())
-                    <a href="{{ route('admin.index') }}" class="admin-panel">Admin Panel</a>
-                @endif
-                <form action="{{ route('logout') }}" method="GET" id="logout-form">
-                    @csrf
-                    <span class="submit-button" onclick="document.getElementById('logout-form').submit();">Logout</span>
-                </form>
-                @if(!auth()->user()->isAdmin())
-                        <a href="{{route('user.followed', auth()->user())}}" class="followed">Followed</a>
-                        <a href="{{route('user.balance', auth()->user())}}">{{auth()->user()->balance}}€</a>
-                    @endif
+        <div class="header-info">
+            <div class="left-about">
+                <a href="{{ url('/auction') }}">
+                    <span>Home</span>
+                </a>
+                <a href="{{ route('features') }}"><span id="service">Services</span></a>
+                <a href="{{ route('faq') }}"><span>FAQ</span></a>
+                <a href="{{ route('misc.about') }}"><span>About Us</span></a>
+                <a href="{{ route('contacts') }}"><span>Contacts</span></a>
+            </div>
 
-                    <a href="{{ route('inbox') }}">
-                    <div class="select-wrapper" style="position: relative;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#424242" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-inbox">
+            <div class="logo">
+                <a href="{{ url('/auction') }}" class="logo">
+                    AuctionPeer.
+                </a>
+            </div>
+            <div class="about">
+                @auth
+                @if(auth()->user()->isAdmin())
+                <a href="{{ route('admin.index') }}" class="admin-panel"> <span>Admin Panel</span></a>
+                @endif
+                @if (!auth()->user()->isAdmin())
+                <a href="{{route('user.balance', auth()->user())}}"><span id="balance">{{auth()->user()->balance}}€</span></a>
+                @endif
+                <a href="{{ route('inbox') }}">
+                    <div class="select-wrappe" style="position: relative;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-inbox">
                             <path d="M4 4h16v16H4z" />
                             <path d="M22 12H2" />
                             <path d="M7 12l5 5 5-5" />
                         </svg>
                         @if($notificationCount > 0)
-                            <span class="notification-count">{{ $notificationCount }}</span>
+                        <span class="notification-count">{{ $notificationCount }}</span>
                         @endif
                     </div>
                 </a>
-                    <a href="{{ route('user.show', auth()->user()) }}">
-                    <div class="select-wrapper">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#424242" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-round">
-                            <circle cx="12" cy="8" r="5" />
-                            <path d="M20 21a8 8 0 0 0-16 0" />
+
+                
+
+                
+                <div class="dropdown-wrapper" id="dropdownWrapper">
+                    <div class="dropdown-toggle" id="dropdownToggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-round">
+                            <circle cx="12" cy="8" r="5"></circle>
+                            <path d="M20 21a8 8 0 0 0-16 0"></path>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down">
+                            <path d="m6 9 6 6 6-6"></path>
                         </svg>
                     </div>
-                </a>
-            @endauth
 
-            @guest
+                    <!-- Dropdown menu -->
+                    <ul class="dropdown-menu" id="dropdownMenu">
+                        @if(!auth()->user()->isAdmin())
+                        <a href="{{ route('user.show', auth()->user()) }}">
+                        <li>
+                            <span id="drop-a">See Profile</span>
+                        </li>
+                        </a>
+                        <a href="{{ route('user.followed', auth()->user()) }}">
+                        <li>
+                            <span id="drop-a" >Followed</span>
+                        </li>
+                        </a>
+                        
+                        @endif
+                        <span onclick="document.getElementById('logout-form').submit();">
+                        <li>
+                            <form action="{{ route('logout') }}" method="GET" id="logout-form">
+                                @csrf
+                                <span class="logout-link">Logout</span>
+                            </form>
+                        </li>
+                        </span>
+                    </ul>
+                </div>
+                @endauth
+
+                @guest
                 <a href="{{ route('login') }}" class="login-button">Login</a>
-            @endguest
-        </div>
-    </div>
-
-    <div class="search-social">
-        <div class="search-container">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon">
-                <circle cx="11" cy="11" r="8" />
-                <path d="m21 21-4.3-4.3" />
-            </svg>
-            <form action="{{ route('search.results', ['query' => request('query')]) }}" method="GET">
-                @csrf
-                    <input type="search" name="query" id="query" class="form-control" placeholder="Search auctions" required>
-            </form>
+                @endguest
             </div>
-    </div>
-    </div>
-    <script src="{{ asset('js/app.js') }}"></script>
 
-    @if (session('error'))
+        </div>
+
+
+
+        @if (session('error'))
         <div class="alert alert-danger">
             {{ session('error') }}
         </div>
-    @endif
+        @endif
 
-    @if (session('success'))
+        @if (session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
         </div>
-    @endif
+        @endif
+
+
+    </div>
+    <div class="header-border"></div>
+</body>
+
+</html>

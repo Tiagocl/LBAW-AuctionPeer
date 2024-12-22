@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container mx-auto p-4">
-    <div class="bg-white p-6 rounded-lg shadow">
+    <div class="faq-div p-6 rounded-lg shadow">
         <h1 class="text-3xl font-bold mb-4">Frequently Asked Questions</h1>
         <div class="faq-item mb-4">
             <h2 class="text-2xl font-semibold mb-2">What is AuctionPeer?</h2>
@@ -24,7 +24,7 @@
         </div>
         <div class="faq-item mb-4">
             <h2 class="text-2xl font-semibold mb-2">How do I contact customer support?</h2>
-            <p>You can contact our customer support team by emailing us at <a href="mailto:info@auctionpeer.com" class="text-blue-500">info@auctionpeer.com</a>.</p>
+            <p>You can contact our customer support team by emailing us at <a href="mailto:info@auctionpeer.com">info@auctionpeer.com</a>.</p>
         </div>
     </div>
 </div>

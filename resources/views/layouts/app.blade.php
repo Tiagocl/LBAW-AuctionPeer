@@ -24,12 +24,16 @@
     <script type="text/javascript" src="{{ url('js/app.js') }}" defer></script>
     <script type="text/javascript" src="{{ url('js/clearFilters.js') }}" defer></script>
     <script type="text/javascript" src="{{ url('js/ajaxFilters.js') }}" defer></script>
+    <script type="text/javascript" src="{{ url('js/dropDownmenu.js') }}" defer></script>
     <script src="https://js.pusher.com/7.0/pusher.min.js" defer></script>
 </head>
 <body>
+    <div id="app" class="flex flex-col h-screen justify-between">
+        <div id="notifications-container" class="fixed class="fixed bottom-4 right-4 z-50 space-y-4"></div>
+        <main class="mb-auto">
     <div id="app">
         <div id="notifications-container" class="fixed bottom-4 right-4 z-50 space-y-4"></div>
-        <main>
+        <main class="mb-auto">
             <header>
                 @include('layouts.header')
             </header>

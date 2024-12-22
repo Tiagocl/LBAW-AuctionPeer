@@ -27,6 +27,8 @@
                     <td>{{ $user->email }}</td>
                     <td><img src="{{ asset('storage/' . $user->profile_picture) }}" alt="Profile Picture" width="50" height="50"></td>
                     <td class="table-flex-row">
+
+                        @if(!$user->is_admin)
                         <!-- Edit Button -->
                         <a href="{{ route('user.edit', $user) }}" class="btn btn-primary btn-sm">Edit</a>
 
@@ -47,6 +49,7 @@
                                 @csrf
                                 <button type="submit" class="btn btn-success btn-sm">Unblock</button>
                             </form>
+                        @endif
                         @endif
                     </td>
                 </tr>

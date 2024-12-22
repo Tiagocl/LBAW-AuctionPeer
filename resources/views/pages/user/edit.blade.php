@@ -3,7 +3,7 @@
 @section('content')
 
 <h1>Edit Profile</h1>
-<div class="rectangle-div">
+<div id="edit-profile-container" class="rectangle-div w-1/2">
 
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
