@@ -628,7 +628,7 @@ input[type="range"]:focus::-moz-range-thumb{
 input[type=text]:focus,
 input[type=email]:focus,
 input[type=password]:focus {
-  border-color: #9b4dca;
+  border-color: var(--second-color);
 }
 
 #logout-form {
@@ -861,7 +861,6 @@ span {
 form {
   margin: 0;
 }
-  
 
 .auction-info {
   background-color: var(--main-color);
@@ -1146,6 +1145,7 @@ input[type="range"] {
   margin-bottom: 1rem; 
 }
 
+
 .form-label {
   display: block;
   font-size: 0.875rem; 
@@ -1262,4 +1262,176 @@ input[type="range"] {
 
 .form-container {
   margin-top: 1.5rem; 
+}
+
+/* Profile Page Styles */
+
+/* General Layout */
+.user-profile-section {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+/* Profile Info Section */
+.profile-info {
+  flex: none;
+  width: 12rem;
+  text-align: center;
+}
+
+.profile-picture {
+  width: 8rem;
+  height: 8rem;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  background-color: var(--main-color);
+  background-size: cover;
+}
+
+.username {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.user-rating span {
+  font-size: 1.25rem;
+}
+
+.star-filled {
+  color: #f5c518;
+}
+
+.star-empty {
+  color: var(--main-color);
+}
+
+.join-date,
+.edit-profile,
+.logout-link {
+  display: block;
+  margin-top: 0.5rem;
+}
+
+.delete-user-button {
+  margin-top: 0.5rem;
+  border: none;
+  background: transparent;
+  color: red;
+  cursor: pointer;
+}
+
+/* Auction Sections */
+.auction-sections {
+  flex: 1;
+}
+
+.create-auction-button {
+  margin-bottom: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  color: white;
+  background-color: var(--second-color);
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.create-auction-button:hover {
+  background-color: #d37500;
+}
+
+/* Auction Lists Layout */
+.auction-lists {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+/* Individual Auction List */
+.auction-list {
+  padding: 1.5rem;
+  background-color: var(--main-color);
+  border-radius: 1rem;
+}
+
+.auction-list-title {
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+}
+
+.empty-message {
+  font-size: 1rem;
+  color: white;
+  text-align: center;
+}
+
+/* Auction Items */
+.auction-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.auction-item {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background-color: var(--background);
+  border-radius: 0.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.auction-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Auction Thumbnail */
+.auction-thumbnail {
+  width: 5rem;
+  height: 5rem;
+  background-size: cover;
+  background-position: center;
+  border-radius: 0.5rem;
+}
+
+/* Auction Details */
+.auction-details {
+  flex: 1;
+}
+
+.auction-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+.auction-price,
+.auction-end-date,
+.auction-date,
+.auction-offer,
+.auction-current-bid {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.see-all-link {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--second-color);
+  text-decoration: none;
+}
+
+.see-all-link:hover {
+  text-decoration: underline;
+}
+
+.user-auction-lists {
+  background-color: var(--main-color);
 }
