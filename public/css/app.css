@@ -1492,3 +1492,111 @@ input[type="range"] {
 .mark-as-read-form {
   margin-left: 10px;
 }
+
+/* user's ratings */
+
+.ratings-page {
+  padding: 20px;
+  margin: auto;
+  width: 50%;
+  background-color: var(--main-color);
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.ratings-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.ratings-header h1 {
+  font-size: 4rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.ratings-back-button {
+  padding: 0.5rem 3rem;
+  background-color: var(--second-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.ratings-back-button span {
+  margin: auto;
+}
+
+.ratings-back-button:hover {
+  background-color: #d37500;
+}
+
+.ratings-count {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.ratings-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ratings-item {
+  padding: 15px;
+  margin-bottom: 15px;
+  background-color: #9c9c9c;
+  border-radius: 10px;
+  border-bottom: 1px solid #ccc;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ratings-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ratings-username {
+  font-weight: bold;
+}
+
+.ratings-score {
+  color: var(--second-color);
+  font-weight: bold;
+}
+
+.ratings-comment {
+  font-style: italic;
+  color: #4a4a4a;
+}
+
+.ratings-details {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: white;
+}
+
+.ratings-date {
+  color: #e2e8f0;
+}
+
+.ratings-auction-link {
+  color: var(--second-color);
+  text-decoration: none;
+}
+
+.ratings-auction-link:hover {
+  text-decoration: underline;
+}
