@@ -22,7 +22,7 @@ class AuctionWon implements ShouldBroadcast
     public function __construct($auction, $user_to_be_notified) {
         $this->user_to_be_notified = $user_to_be_notified;
         $this->auction = $auction;
-        $this->message = 'Congratulations! You just won' . $auction->title . '.';
+        $this->message = 'Congratulations! You just won: ' . $auction->title . '.';
     }
 
     // You should specify the name of the channel created in Pusher.
