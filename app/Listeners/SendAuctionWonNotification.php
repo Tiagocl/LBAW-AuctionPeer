@@ -16,7 +16,7 @@ class SendAuctionWonNotification implements ShouldQueue
     {
         // Retrieve the necessary data from the event
         $receiver_id = $event->user_to_be_notified->id;
-        $type = 'auction_won';
+        $type = 'auction_ended';
         $content = $event->message;
         $link = '/user/' . $event->auction->id . '/balance/';
         $created_at = now();
