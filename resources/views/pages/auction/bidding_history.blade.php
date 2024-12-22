@@ -3,7 +3,7 @@
 @section('title', $auction->title)
 
 @section('content')
-    <div class="bids" style="height: 100%">
+    <div class="bids bids-index" style="height: 100%">
         <div id="bid-and-button">
             <h1>Bids</h1>
             <button class="back-button" onclick="window.history.back()">Back</button>

@@ -695,6 +695,11 @@ input[type=password]:focus {
   padding: 0;
 }
 
+.bids-index {
+  width: 50%;
+  margin: auto;
+}
+
 .bid-item {
   display: flex;
   justify-content: space-between;
