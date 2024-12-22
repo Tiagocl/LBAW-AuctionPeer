@@ -1472,7 +1472,7 @@ input[type="range"] {
   border: 1px solid #ccc;
   padding: 10px;
   border-radius: 5px;
-  background-color: #f9f9f9;
+  background-color: var(--main-color);
 }
 
 .notification-item.hidden {
@@ -1480,6 +1480,7 @@ input[type="range"] {
 }
 
 .notification-content {
+  color: white;
   flex-grow: 1;
 }
 
