@@ -1287,6 +1287,10 @@ input[type="range"] {
   padding: 2rem;
 }
 
+#edit-profile-container {
+  margin: auto;
+}
+
 /* Profile Info Section */
 .profile-info {
   flex: none;

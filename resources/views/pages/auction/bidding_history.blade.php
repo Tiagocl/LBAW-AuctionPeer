@@ -11,7 +11,7 @@
         <h2 id="hist-bid-num"><strong>Number of Bids:</strong> {{ $auction->bids()->count() }}</h2>
         <ul>
             @php
-                $bids = $auction->bids()->get()->reverse()->take(3);
+                $bids = $auction->bids()->get();
             @endphp
             @foreach ($bids as $bid)
                 <li class="bid-item">
