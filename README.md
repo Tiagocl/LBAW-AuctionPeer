@@ -1,7 +1,6 @@
 To run this program, use the following command:
 
 ```bash
-
 docker run -d --name lbaw2451 -p 8001:80 gitlab.up.pt:5050/lbaw/lbaw2425/lbaw2451
 ```
 
