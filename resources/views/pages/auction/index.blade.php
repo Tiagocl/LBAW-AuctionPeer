@@ -44,7 +44,7 @@
 
         <!-- Submit Button -->
         <button type="submit" class="apply-filters">Apply Filters</button>
-        <a href="#" id="clear-filters" class="clear-filters">Clean filters</a>
+        <a href="#" id="clear-filters" class="clear-filters">Clear filters</a>
 
     </div>
     <div class="cards-container">
