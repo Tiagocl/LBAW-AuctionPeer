@@ -197,7 +197,7 @@ main {
   border: none;
   background: linear-gradient(to bottom, black 1px, transparent 1px);
   height: 1px;
-  margin-bottom: 30px;
+  margin-bottom: 100px;
 }
 
 /* .select-wrapper 
@@ -939,7 +939,7 @@ h1.deleted {
     color: #155724;
     padding: 20px;
     border-radius: 10px;
-    margin: 20px 0;
+    margin: 30px 0;
 }
 
 input[type="range"] {
