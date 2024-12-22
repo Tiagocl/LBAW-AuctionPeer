@@ -43,7 +43,6 @@ Route::controller(AuctionController::class)->group(function () {
     Route::get('/auction/{auction}/edit', 'edit')->name('auction.edit');
     Route::post('/auction/{auction}/edit', 'update')->name('auction.update');
     Route::get('/auction/{auction}/cancel', 'cancel')->name('auction.cancel');
-    Route::post('/auction/{auction}/cancel', 'cancel')->name('auction.cancel');
     Route::post('/auction/{auction}/follow', 'follow')->name('auction.follow');
     Route::post('/auction/{auction}/unfollow', 'unfollow')->name('auction.unfollow');
     Route::get('/admin/auctions', 'adminIndex')->name('admin.auctions');
