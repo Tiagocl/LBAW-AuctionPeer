@@ -8,6 +8,7 @@ use App\Events\AuctionBidWithdrawn;
 use App\Events\AuctionCancelled;
 use App\Events\AuctionEdited;
 use App\Events\AuctionEnded;
+use App\Events\AuctionWon;
 use App\Events\AuctionFollowed;
 use App\Events\GlobalNotification;
 use App\Listeners\SendAuctionBidWithdrawnNotification;
@@ -15,7 +16,7 @@ use App\Listeners\SendAuctionCancelledNotification;
 use App\Listeners\SendAuctionEditedNotification;
 use App\Listeners\SendAuctionEndedNotification;
 use App\Listeners\SendAuctionFollowedNotification;
-use App\Listeners\SendGlobalNotification;
+use App\Listeners\SendAuctionWonNotification;
 use App\Listeners\SendAuctionBidPlacedNotification;
 
 class EventServiceProvider extends ServiceProvider
@@ -45,9 +46,10 @@ class EventServiceProvider extends ServiceProvider
             SendAuctionFollowedNotification::class,
         ],
 
-        GlobalNotification::class => [
-            SendGlobalNotification::class,
+        AuctionWon::class => [
+            SendAuctionWonNotification::class,
         ],
+
     ];
 
 

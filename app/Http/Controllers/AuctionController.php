@@ -86,7 +86,7 @@ class AuctionController extends Controller
             ]);
 
             return redirect()->route('auctions.index')->with('success', 'Auction created successfully.');
-        } catch (QueryException $exception) {
+        } catch (\Exception $exception) {
             // Handle specific PostgreSQL error codes or messages
             if (str_contains($exception->getMessage(), 'The auction end date must be at')) {
                 return redirect()->route('auctions.create')->with('error', 'End date must be at least one day greater than start date.');
@@ -94,8 +94,8 @@ class AuctionController extends Controller
 
             // For other database errors
             // Log the error for further investigation
-            Log::error('An error occurred while placing the bid: ' . $exception->getMessage());
-            return response()->json(['error' => 'An error occurred while placing the bid. Please try again later.'], 500);
+            Log::error('An error occurred while creating the auction: ' . $exception->getMessage());
+            return redirect()->route('auctions.create')->with('error', 'An error occurred while creating the auction: ' . $exception->getMessage());
         }
     }
 

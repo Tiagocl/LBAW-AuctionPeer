@@ -3,18 +3,27 @@
 @section('content')
     <div class="container">
         <h1>Notifications Inbox</h1>
-        @foreach ($notifications as $notification)
-            <div class="notification-item {{ $notification->hidden ? 'hidden' : '' }}">
-                <p>{{ $notification->content }}</p>
-                <small>{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</small>
-                @if (!$notification->hidden)
-                    <form action="{{ route('notifications.markAsRead') }}" method="POST" onsubmit="event.preventDefault(); markAsRead('{{ $notification->id }}');">
-                        @csrf
-                        <button type="submit">Mark as read</button>
-                    </form>
-                @endif
-            </div>
-        @endforeach
+        <div id="notifications-list">
+            @foreach ($notifications as $notification)
+                <div class="notification-item {{ $notification->hidden ? 'hidden' : '' }}">
+                    <div class="notification-content">
+                        <p>{{ $notification->content }}</p>
+                        <small>{{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</small>
+                    </div>
+                    <div class="notification-actions">
+                        @if (!$notification->hidden)
+                            <form action="{{ route('notifications.markAsRead') }}" method="POST" onsubmit="event.preventDefault(); markAsRead('{{ $notification->id }}');" class="mark-as-read-form">
+                                @csrf
+                                <button type="submit">Mark as read</button>
+                            </form>
+                        @endif
+                        @if ($notification->link)
+                        <button onclick="window.location.href='{{ $notification->link }}'" type="submit">Check it out</button>
+                        @endif
+                    </div>
+                </div>
+            @endforeach
+        </div>
 
         {{-- Pagination links --}}
         {{-- {{ $notifications->links() }} --}}

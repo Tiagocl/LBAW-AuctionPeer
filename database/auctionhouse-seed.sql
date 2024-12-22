@@ -480,16 +480,16 @@ INSERT INTO category (name) VALUES
 
 -- Insert Regular Users (non-admin)
 INSERT INTO users (username, email, password, created_at, birth_date, is_admin) VALUES
-                                                                                    ('john_doe', 'john@example.com', 'hashed_password1', NOW() - INTERVAL '6 months', '1990-01-15', FALSE),
-                                                                                    ('jane_smith', 'jane@example.com', 'hashed_password2', NOW() - INTERVAL '5 months', '1992-03-20', FALSE),
-                                                                                    ('bob_wilson', 'bob@example.com', 'hashed_password3', NOW() - INTERVAL '4 months', '1988-07-10', FALSE),
-                                                                                    ('alice_johnson', 'alice@example.com', 'hashed_password4', NOW() - INTERVAL '3 months', '1995-11-30', FALSE),
-                                                                                    ('mike_brown', 'mike@example.com', 'hashed_password5', NOW() - INTERVAL '2 months', '1991-09-25', FALSE),
-                                                                                    ('sarah_davis', 'sarah@example.com', 'hashed_password6', NOW() - INTERVAL '1 month', '1993-04-05', FALSE),
-                                                                                    ('david_miller', 'david@example.com', 'hashed_password7', NOW() - INTERVAL '2 months', '1987-12-15', FALSE),
-                                                                                    ('emma_wilson', 'emma@example.com', 'hashed_password8', NOW() - INTERVAL '3 months', '1994-06-20', FALSE),
-                                                                                    ('chris_taylor', 'chris@example.com', 'hashed_password9', NOW() - INTERVAL '4 months', '1989-08-08', FALSE),
-                                                                                    ('lisa_anderson', 'lisa@example.com', 'hashed_password10', NOW() - INTERVAL '5 months', '1996-02-28', FALSE);
+                                                                                    ('john_doe', 'john@example.com', '$2y$10$D0ZvErAnuZcWxbBkABw9busMMoWqwyDU80qi2pzBaa4imHrHIOAlW', NOW() - INTERVAL '6 months', '1990-01-15', FALSE),
+                                                                                    ('jane_smith', 'jane@example.com', '$2y$10$D0ZvErAnuZcWxbBkABw9busMMoWqwyDU80qi2pzBaa4imHrHIOAlW', NOW() - INTERVAL '5 months', '1992-03-20', FALSE),
+                                                                                    ('bob_wilson', 'bob@example.com', '$2y$10$D0ZvErAnuZcWxbBkABw9busMMoWqwyDU80qi2pzBaa4imHrHIOAlW', NOW() - INTERVAL '4 months', '1988-07-10', FALSE),
+                                                                                    ('alice_johnson', 'alice@example.com', '$2y$10$D0ZvErAnuZcWxbBkABw9busMMoWqwyDU80qi2pzBaa4imHrHIOAlW', NOW() - INTERVAL '3 months', '1995-11-30', FALSE),
+                                                                                    ('mike_brown', 'mike@example.com', '$2y$10$D0ZvErAnuZcWxbBkABw9busMMoWqwyDU80qi2pzBaa4imHrHIOAlW', NOW() - INTERVAL '2 months', '1991-09-25', FALSE),
+                                                                                    ('sarah_davis', 'sarah@example.com', '$2y$10$D0ZvErAnuZcWxbBkABw9busMMoWqwyDU80qi2pzBaa4imHrHIOAlW', NOW() - INTERVAL '1 month', '1993-04-05', FALSE),
+                                                                                    ('david_miller', 'david@example.com', '$2y$10$D0ZvErAnuZcWxbBkABw9busMMoWqwyDU80qi2pzBaa4imHrHIOAlW', NOW() - INTERVAL '2 months', '1987-12-15', FALSE),
+                                                                                    ('emma_wilson', 'emma@example.com', '$2y$10$D0ZvErAnuZcWxbBkABw9busMMoWqwyDU80qi2pzBaa4imHrHIOAlW', NOW() - INTERVAL '3 months', '1994-06-20', FALSE),
+                                                                                    ('chris_taylor', 'chris@example.com', '$2y$10$D0ZvErAnuZcWxbBkABw9busMMoWqwyDU80qi2pzBaa4imHrHIOAlW', NOW() - INTERVAL '4 months', '1989-08-08', FALSE),
+                                                                                    ('lisa_anderson', 'lisa@example.com', '$2y$10$D0ZvErAnuZcWxbBkABw9busMMoWqwyDU80qi2pzBaa4imHrHIOAlW', NOW() - INTERVAL '5 months', '1996-02-28', FALSE);
 
 -- Insert Admin Users
 INSERT INTO users (username, email, password, created_at, birth_date, is_admin) VALUES
