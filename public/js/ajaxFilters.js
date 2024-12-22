@@ -101,19 +101,63 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-function timeFromNow(endDate) {
+
+//mimicking diffForHumans
+function timeFromNow(dateString) {
     const now = new Date();
-    const end = new Date(endDate);
-    const distance = end - now;
+    const targetDate = new Date(dateString);
+    const diffMs = targetDate - now; // Difference in milliseconds
+    const diffSeconds = Math.round(diffMs / 1000);
+    const diffMinutes = Math.round(diffMs / (1000 * 60));
+    const diffHours = Math.round(diffMs / (1000 * 60 * 60));
+    const diffDays = Math.round(diffMs / (1000 * 60 * 60 * 24));
+    const diffWeeks = Math.round(diffMs / (1000 * 60 * 60 * 24 * 7));
+    const diffMonths = Math.round(diffMs / (1000 * 60 * 60 * 24 * 30));
+    const diffYears = Math.round(diffMs / (1000 * 60 * 60 * 24 * 365));
 
-    if (distance < 0) {
-        return "Auction ended";
+    const pluralize = (count, singular, plural) => (count === 1 ? singular : plural);
+
+    if (diffMs > 0) {
+        if (diffSeconds < 60) {
+            return `${diffSeconds} ${pluralize(diffSeconds, 'second', 'seconds')} from now`;
+        } else if (diffMinutes < 60) {
+            return `${diffMinutes} ${pluralize(diffMinutes, 'minute', 'minutes')} from now`;
+        } else if (diffHours < 24) {
+            return `${diffHours} ${pluralize(diffHours, 'hour', 'hours')} from now`;
+        } else if (diffDays < 7) {
+            return `${diffDays} ${pluralize(diffDays, 'day', 'days')} from now`;
+        } else if (diffWeeks < 4) {
+            return `${diffWeeks} ${pluralize(diffWeeks, 'week', 'weeks')} from now`;
+        } else if (diffMonths < 12) {
+            return `${diffMonths} ${pluralize(diffMonths, 'month', 'months')} from now`;
+        } else {
+            return `${diffYears} ${pluralize(diffYears, 'year', 'years')} from now`;
+        }
+    } else {
+        const pastDiffSeconds = Math.abs(diffSeconds);
+        const pastDiffMinutes = Math.abs(diffMinutes);
+        const pastDiffHours = Math.abs(diffHours);
+        const pastDiffDays = Math.abs(diffDays);
+        const pastDiffWeeks = Math.abs(diffWeeks);
+        const pastDiffMonths = Math.abs(diffMonths);
+        const pastDiffYears = Math.abs(diffYears);
+
+        if (pastDiffSeconds < 60) {
+            return `${pastDiffSeconds} ${pluralize(pastDiffSeconds, 'second', 'seconds')} ago`;
+        } else if (pastDiffMinutes < 60) {
+            return `${pastDiffMinutes} ${pluralize(pastDiffMinutes, 'minute', 'minutes')} ago`;
+        } else if (pastDiffHours < 24) {
+            return `${pastDiffHours} ${pluralize(pastDiffHours, 'hour', 'hours')} ago`;
+        } else if (pastDiffDays < 7) {
+            return `${pastDiffDays} ${pluralize(pastDiffDays, 'day', 'days')} ago`;
+        } else if (pastDiffWeeks < 4) {
+            return `${pastDiffWeeks} ${pluralize(pastDiffWeeks, 'week', 'weeks')} ago`;
+        } else if (pastDiffMonths < 12) {
+            return `${pastDiffMonths} ${pluralize(pastDiffMonths, 'month', 'months')} ago`;
+        } else {
+            return `${pastDiffYears} ${pluralize(pastDiffYears, 'year', 'years')} ago`;
+        }
     }
-
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    return `${days}d ${hours}h ${minutes}m ${seconds}s`;
 }
+
+
