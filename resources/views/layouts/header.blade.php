@@ -5,8 +5,8 @@
                 <a href="{{ url('/auction') }}">
                     <span>Home</span>
                 </a>
-                <span id="service">Service</span>
-                <a href="{{ route('faq') }}"><span>Questions</span></a>
+                <a href="{{ route('features') }}"><span id="service">Services</span></a>
+                <a href="{{ route('faq') }}"><span>FAQ</span></a>
                 <a href="{{ route('misc.about') }}"><span>About Us</span></a>
             </div>
 

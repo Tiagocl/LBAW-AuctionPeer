@@ -897,6 +897,7 @@ h4 {
   flex-direction: row;
   justify-content: space-between;
   padding: 1.2rem 1.5rem;
+  height: 100%;
   align-items: center;
 }
 
