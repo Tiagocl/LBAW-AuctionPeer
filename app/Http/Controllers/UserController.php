@@ -233,7 +233,7 @@ class UserController extends Controller
     public function inbox()
     {
         $user = Auth::user();  
-        $notifications = DB::table('notifications')->where('receiver_id', $user->id)->get();
+        $notifications = DB::table('notifications')->where('receiver_id', $user->id)->orderBy('created_at', 'desc')->get();
         
         return view('pages.user.inbox', compact('notifications'));
     }

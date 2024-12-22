@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Console\Command;
 use App\Events\AuctionEnded;
 use App\Events\AuctionWon;
+
 class UpdateAuctionStatuses extends Command
 {
     /**
@@ -30,6 +31,7 @@ class UpdateAuctionStatuses extends Command
      */
     public function handle()
     {
+        logger('Updating auction statuses...');
         $now = Carbon::now();
 
         $affected = Auction::where('end_date', '<=', $now)
@@ -47,27 +49,32 @@ class UpdateAuctionStatuses extends Command
                 event(new AuctionEnded($auction, $auction->creator));
                 continue;
             }
+            logger('Bids found for auction ' . $auction->id);
             $bid = Bid::where('auction_id', $auction->id)->where('amount', $auction->current_bid)->first();
 
             $auction->status = 'ended';
             $auction->buyer_id = $bid->user_id;
             $auction->save();
 
+            
+            $transaction = Transaction::create([
+                'amount' => $auction->current_bid,
+                'auction_id' => $auction->id,
+            ]);
+            
             // Notify the creator of the auction that it has ended
             event(new AuctionEnded($auction, $auction->creator));
 
             // Notify the buyer of the auction that they have won
             event(new AuctionWon($auction, $bid->user)); //TODO: Implement this event
 
-            $bidders = Bid::where('auction_id', $auction->id)->where('user_id', '!=', $bid->user_id)->get();
+            $bidders = $auction->bids()->where('user_id', '!=', $bid->user_id)->get();
+
             foreach ($bidders as $bidder) {
                 event(new AuctionEnded($auction, $bidder->user));
             }
+            logger('dispatched the events');
 
-            $transaction = Transaction::create([
-                'amount' => $auction->current_bid,
-                'auction_id' => $auction->id,
-            ]);
 
             $this->info("Auction '{$auction->title}' has been updated to 'ended', and the respective transaction has been created.");
         }
