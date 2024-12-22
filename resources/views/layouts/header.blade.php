@@ -90,7 +90,6 @@
         <div class="alert alert-success">
             {{ session('success') }}
         </div>
-<<<<<<< HEAD
         @endif
 
 
@@ -99,6 +98,3 @@
 </body>
 
 </html>
-=======
-    @endif
->>>>>>> main
