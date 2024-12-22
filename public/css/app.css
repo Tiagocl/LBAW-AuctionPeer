@@ -931,7 +931,7 @@ h1.deleted {
     color: #721c24;
     padding: 20px;
     border-radius: 10px;
-    margin: 20px 0;
+    margin: 30px 0;
 }
 
 .alert-success {
@@ -1128,14 +1128,14 @@ input[type="range"] {
 }
 
 .login-register-header {
-  font-size: 1.5rem; 
+  font-size: 3rem; 
   font-weight: 600; 
   text-align: center;
   color: white;
 }
 
 .login-register-subheader {
-  font-size: 1rem; 
+  font-size: 2rem; 
   text-align: center;
   color: white;
   margin-top: 0.25rem;
@@ -1173,7 +1173,7 @@ input[type="range"] {
 }
 
 .forgot-password {
-  font-size: 1rem;
+  font-size: 1.5rem;
   color: white;
 }
 
@@ -1195,16 +1195,18 @@ input[type="range"] {
 
 .checkbox-label {
   margin-top: 0px;
-  display: inline-flex;
-  align-items: start;
-  font-size: 1rem;
+  display: flex;
+  align-items: flex-start;
+  font-size: 1.5rem;
   color: white;
 }
 
 .checkbox {
   margin-right: 0.5rem;
-  width: 1.5rem;
-  height: 1.5rem;
+  max-width: 1.5rem;
+  max-height: 1.5rem;
+  margin: auto;
+  margin-right: 1rem;
 }
 
 .primary-button {
@@ -1240,14 +1242,14 @@ input[type="range"] {
 }
 
 .divider-text {
-  font-size: 0.875rem;
+  font-size: 1.5rem;
   color: white;
   padding: 0 1rem;
 }
 
 .sign-up-link {
   text-align: center;
-  font-size: 0.875rem;
+  font-size: 1.5rem;
   color: white;
 }
 

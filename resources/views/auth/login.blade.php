@@ -8,11 +8,11 @@
         <h2 class="login-register-header">Login</h2>
         <p class="login-register-subheader">Sign in to your AuctionPeer account</p>
 
-        <!-- Login Form -->
+        <!-- login form -->
         <form method="POST" action="{{ route('login') }}" class="form-container">
             @csrf
 
-            <!-- Email Input -->
+            <!-- email input -->
             <div class="form-group">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" name="email" id="email" placeholder="Enter your email"
@@ -22,7 +22,7 @@
                 @enderror
             </div>
 
-            <!-- Password Input -->
+            <!-- password input -->
             <div class="form-group">
                 <label for="password" class="form-label">Password</label>
                 <input type="password" name="password" id="password" placeholder="Enter your password"
@@ -32,12 +32,12 @@
                 @enderror
             </div>
 
-            <!-- Forgot Password -->
+            <!-- forgot password -->
             <p class="forgot-password">Forgot your password?
                 <a href="{{ route('password.request') }}">Click Here</a>
             </p>
 
-            <!-- Remember Me -->
+            <!-- remember me -->
             <div class="remember-me">
                 <label class="checkbox-label">
                     <input type="checkbox" name="remember" id="remember" class="checkbox">
@@ -45,18 +45,18 @@
                 </label>
             </div>
 
-            <!-- Submit Button -->
+            <!-- submit button -->
             <button type="submit" class="primary-button">Login</button>
         </form>
 
-        <!-- Divider -->
+        <!-- divider -->
         <div class="divider">
             <span class="divider-line"></span>
             <span class="divider-text">OR</span>
             <span class="divider-line"></span>
         </div>
 
-        <!-- Sign Up Link -->
+        <!-- dign up link -->
         <div class="sign-up-link">
             <p>Don't have an account?
                 <a href="{{ route('register') }}">Sign up</a>
