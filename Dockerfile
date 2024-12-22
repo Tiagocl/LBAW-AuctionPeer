@@ -13,5 +13,8 @@ COPY ./etc/nginx/default.conf /etc/nginx/sites-enabled/default
 COPY .env.production /var/www/.env
 COPY docker_run.sh /docker_run.sh
 
+COPY run_schedule.sh /etc/cron.d/run_schedule.sh
+RUN chmod +x /etc/cron.d/run_schedule.sh
+
 # Start command
-CMD sh /docker_run.sh
+CMD sh /docker_run.sh && cron -f
