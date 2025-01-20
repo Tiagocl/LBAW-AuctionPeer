@@ -1,6 +1,6 @@
 ## Auction Peer
 
-Project note 19,6.
+Project note 19,2.
 
 To run this program, use the following command:
 
